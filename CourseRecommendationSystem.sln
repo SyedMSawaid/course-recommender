@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{82B2A5DF-3B20-49F0-92D9-4B6716F14F46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{82B2A5DF-3B20-49F0-92D9-4B6716F14F46}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseRecommendationSystemML.Model", "CourseRecommendationSystemML.Model\CourseRecommendationSystemML.Model.csproj", "{B35FE2E0-0257-442D-AF99-ABC50E83078C}"
 EndProject
