@@ -22,6 +22,10 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("BLOB");
 
@@ -34,6 +38,203 @@ namespace API.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("AppUser");
+                });
+
+            modelBuilder.Entity("API.Entity.Course", b =>
+                {
+                    b.Property<string>("CourseId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CourseDescription")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CourseName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EnrolledStudentsId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CourseId");
+
+                    b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("API.Entity.DiscussionBoard", b =>
+                {
+                    b.Property<int>("DiscussionBoardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CourseId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("DiscussionBoardId");
+
+                    b.ToTable("DiscussionBoards");
+                });
+
+            modelBuilder.Entity("API.Entity.Question", b =>
+                {
+                    b.Property<int>("QuestionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DiscussionBoardId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Query")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("QuestionId");
+
+                    b.HasIndex("DiscussionBoardId");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("API.Entity.Reply", b =>
+                {
+                    b.Property<int>("ReplyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ReplyId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("Replies");
+                });
+
+            modelBuilder.Entity("API.Entity.Teacher", b =>
+                {
+                    b.Property<string>("TeacherId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("TeacherId");
+
+                    b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("API.Entity.Topic", b =>
+                {
+                    b.Property<int>("TopicId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CourseId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TopicName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("TopicId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Topics");
+                });
+
+            modelBuilder.Entity("CourseStudent", b =>
+                {
+                    b.Property<string>("EnrolledCoursesCourseId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EnrolledStudentsId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("EnrolledCoursesCourseId", "EnrolledStudentsId");
+
+                    b.HasIndex("EnrolledStudentsId");
+
+                    b.ToTable("CourseStudent");
+                });
+
+            modelBuilder.Entity("API.Entity.Student", b =>
+                {
+                    b.HasBaseType("API.Entity.AppUser");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Contact")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EnrolledCoursesId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StudentId")
+                        .HasColumnType("TEXT");
+
+                    b.HasDiscriminator().HasValue("Student");
+                });
+
+            modelBuilder.Entity("API.Entity.Question", b =>
+                {
+                    b.HasOne("API.Entity.DiscussionBoard", "DiscussionBoard")
+                        .WithMany("Questions")
+                        .HasForeignKey("DiscussionBoardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DiscussionBoard");
+                });
+
+            modelBuilder.Entity("API.Entity.Reply", b =>
+                {
+                    b.HasOne("API.Entity.Question", "Question")
+                        .WithMany("Replies")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
+                });
+
+            modelBuilder.Entity("API.Entity.Topic", b =>
+                {
+                    b.HasOne("API.Entity.Course", "Course")
+                        .WithMany("TopicList")
+                        .HasForeignKey("CourseId");
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("CourseStudent", b =>
+                {
+                    b.HasOne("API.Entity.Course", null)
+                        .WithMany()
+                        .HasForeignKey("EnrolledCoursesCourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entity.Student", null)
+                        .WithMany()
+                        .HasForeignKey("EnrolledStudentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("API.Entity.Course", b =>
+                {
+                    b.Navigation("TopicList");
+                });
+
+            modelBuilder.Entity("API.Entity.DiscussionBoard", b =>
+                {
+                    b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("API.Entity.Question", b =>
+                {
+                    b.Navigation("Replies");
                 });
 #pragma warning restore 612, 618
         }

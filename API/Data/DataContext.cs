@@ -15,5 +15,12 @@ namespace API.Data
         }
 
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Topic> Topics { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Reply> Replies { get; set; }
+        public DbSet<DiscussionBoard> DiscussionBoards { get; set; }
     }
 }
