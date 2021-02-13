@@ -21,6 +21,12 @@ namespace API.Controllers
             this.mapper = mapper;
         }
 
+        [HttpGet("new")]
+        public ActionResult New()
+        {
+            return Ok("This is a message");
+        }
+
         [HttpPost("new")]
         public ActionResult New(NewStudentDto newStudentDto)
         {
