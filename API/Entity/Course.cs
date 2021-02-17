@@ -10,7 +10,10 @@ namespace API.Entity
         public string CourseId { get; set; }
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
-        public ICollection<Topic> TopicList { get; set; }
-        public ICollection<Student> EnrolledStudents { get; set; }
+
+        public ICollection<Enrollment> Enrollments { get; set; }
+
+        public ICollection<Course> PreRequisites { get; set; }
+        public ICollection<Course> PreRequisiteTo { get; set; }
     }
 }

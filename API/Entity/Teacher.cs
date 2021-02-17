@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Entity
 {
-    public class Teacher
+    public class Teacher : AppUser
     {
         public string TeacherId { get; set; }
     }

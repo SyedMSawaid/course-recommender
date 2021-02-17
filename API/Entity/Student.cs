@@ -10,6 +10,7 @@ namespace API.Entity
         public string StudentId { get; set; }
         public string Contact { get; set; }
         public string Address { get; set; }
-        public ICollection<Course> EnrolledCourses { get; set; }
+
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
