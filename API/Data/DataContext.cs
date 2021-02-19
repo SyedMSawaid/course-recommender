@@ -22,6 +22,7 @@ namespace API.Data
         
         public DbSet<Course> Courses { get; set; }
         public DbSet<Topic> Topics { get; set; }
+        public DbSet<PreRequisites> PreRequisites { get; set; }
         
         public DbSet<DiscussionBoard> DiscussionBoards { get; set; }
         public DbSet<Question> Questions { get; set; }
@@ -30,9 +31,12 @@ namespace API.Data
         // Courses Override
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Course>()
-                .HasMany(e => e.PreRequisites)
-                .WithMany(e => e.PreRequisiteTo);
+            modelBuilder.Entity<PreRequisites>()
+                .HasMany(e => e.PreRequisistes)
+                .WithOne(s => s.PreRequisites);
+            modelBuilder.Entity<PreRequisites>()
+                .HasMany(e => e.PreRequisiteTo)
+                .WithOne(s => s.PreRequisiteTo);
         }
     }
 }

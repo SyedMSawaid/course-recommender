@@ -12,8 +12,9 @@ namespace API.Entity
         public string CourseDescription { get; set; }
 
         public ICollection<Enrollment> Enrollments { get; set; }
-
-        public ICollection<Course> PreRequisites { get; set; }
-        public ICollection<Course> PreRequisiteTo { get; set; }
+        
+        public PreRequisites PreRequisiteTo { get; set; }
+        public PreRequisites PreRequisites { get; set; }
+        
     }
 }

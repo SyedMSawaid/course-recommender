@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace API.Data.Migrations
+namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
@@ -53,10 +53,20 @@ namespace API.Data.Migrations
                     b.Property<string>("CourseName")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("PreRequisiteToPrerequisiteId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PreRequisitesPrerequisiteId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("TopicId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("CourseId");
+
+                    b.HasIndex("PreRequisiteToPrerequisiteId");
+
+                    b.HasIndex("PreRequisitesPrerequisiteId");
 
                     b.HasIndex("TopicId");
 
@@ -99,6 +109,17 @@ namespace API.Data.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("Enrollments");
+                });
+
+            modelBuilder.Entity("API.Entity.PreRequisites", b =>
+                {
+                    b.Property<int>("PrerequisiteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PrerequisiteId");
+
+                    b.ToTable("PreRequisites");
                 });
 
             modelBuilder.Entity("API.Entity.Question", b =>
@@ -153,21 +174,6 @@ namespace API.Data.Migrations
                     b.ToTable("Topics");
                 });
 
-            modelBuilder.Entity("CourseCourse", b =>
-                {
-                    b.Property<string>("PreRequisiteToCourseId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PreRequisitesCourseId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("PreRequisiteToCourseId", "PreRequisitesCourseId");
-
-                    b.HasIndex("PreRequisitesCourseId");
-
-                    b.ToTable("CourseCourse");
-                });
-
             modelBuilder.Entity("API.Entity.Student", b =>
                 {
                     b.HasBaseType("API.Entity.AppUser");
@@ -196,9 +202,21 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entity.Course", b =>
                 {
+                    b.HasOne("API.Entity.PreRequisites", "PreRequisiteTo")
+                        .WithMany("PreRequisiteTo")
+                        .HasForeignKey("PreRequisiteToPrerequisiteId");
+
+                    b.HasOne("API.Entity.PreRequisites", "PreRequisites")
+                        .WithMany("PreRequisistes")
+                        .HasForeignKey("PreRequisitesPrerequisiteId");
+
                     b.HasOne("API.Entity.Topic", null)
                         .WithMany("Course")
                         .HasForeignKey("TopicId");
+
+                    b.Navigation("PreRequisites");
+
+                    b.Navigation("PreRequisiteTo");
                 });
 
             modelBuilder.Entity("API.Entity.Enrollment", b =>
@@ -240,21 +258,6 @@ namespace API.Data.Migrations
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("CourseCourse", b =>
-                {
-                    b.HasOne("API.Entity.Course", null)
-                        .WithMany()
-                        .HasForeignKey("PreRequisiteToCourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Entity.Course", null)
-                        .WithMany()
-                        .HasForeignKey("PreRequisitesCourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("API.Entity.Course", b =>
                 {
                     b.Navigation("Enrollments");
@@ -263,6 +266,13 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Entity.DiscussionBoard", b =>
                 {
                     b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("API.Entity.PreRequisites", b =>
+                {
+                    b.Navigation("PreRequisistes");
+
+                    b.Navigation("PreRequisiteTo");
                 });
 
             modelBuilder.Entity("API.Entity.Question", b =>
