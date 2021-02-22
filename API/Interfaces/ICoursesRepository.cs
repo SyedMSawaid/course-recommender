@@ -12,5 +12,7 @@ namespace API.Interfaces
         Task<IEnumerable<Course>> GetCoursesAsync();
         void AddCourse(Course course);
         Task<Course> DeleteCourseAsync(int id);
+        Task<ICollection<Course>> GetPrerequisitesOfCourseAsync(Course course);
+        Task<ICollection<Course>> GetPrerequisitesToCourseAsync(Course course);
     }
 }

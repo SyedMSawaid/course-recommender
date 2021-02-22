@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entity;
@@ -44,6 +45,18 @@ namespace API.Repositories
         public Task<Course> DeleteCourseAsync(int id)
         {
             throw new System.NotImplementedException();
+        }
+
+        public async Task<ICollection<Course>> GetPrerequisitesOfCourseAsync(Course course)
+        {
+            var courseObject = await _context.Courses.FindAsync(course);
+            return courseObject.PreRequisites.PreRequisistes.ToList();
+        }
+
+        public async Task<ICollection<Course>> GetPrerequisitesToCourseAsync(Course course)
+        {
+            var courseObject = await _context.Courses.FindAsync(course);
+            return courseObject.PreRequisiteTo.PreRequisiteTo.ToList();
         }
     }
 }

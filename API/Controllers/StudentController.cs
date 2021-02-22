@@ -12,27 +12,17 @@ namespace API.Controllers
 {
     public class StudentController : BaseApiController
     {
-        private readonly DataContext context;
-        private readonly IMapper mapper;
+        private readonly DataContext _context;
 
-        public StudentController(DataContext context, IMapper mapper)
+        public StudentController(DataContext context)
         {
-            this.context = context;
-            this.mapper = mapper;
+            _context = context;
         }
 
-        [HttpGet("new")]
-        public ActionResult New()
-        {
-            return Ok("This is a message");
-        }
-
-        [HttpPost("new")]
-        public ActionResult New(NewStudentDto newStudentDto)
-        {
-            Student student = mapper.Map<Student>(newStudentDto);
-
-            return Ok("Data Saved");
-        }
+        // [HttpPost("new")]
+        // public async Task<ActionResult> New(Student student)
+        // {
+        //
+        // }
     }
 }
