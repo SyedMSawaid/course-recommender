@@ -7,7 +7,7 @@ namespace API.DTOs
 {
     public class NewStudentDto
     {
-        public string StudentId { get; set; }
+        public int Id { get; set; }
         public string Contact { get; set; }
         public string Address { get; set; }
     }

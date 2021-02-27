@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
 using API.Entity;
-using API.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +23,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
         
+        // COURSES CRUD
         [HttpPost("new")]
         public async Task<ActionResult> New(Course course)
         {
@@ -76,8 +76,94 @@ namespace API.Controllers
                 courseToUpdate.CourseName = courseUpdateDto.CourseName;
                 courseToUpdate.CourseDescription = courseUpdateDto.CourseDescription;
             }
+
             await _context.SaveChangesAsync();
             return Ok("Course updated");
+        }
+        
+        // DISCUSSION BOARD
+        [HttpPost("question/new")]
+        public async Task<ActionResult> NewQuestion(PostQuestionDto postQuestionDto)
+        {
+            if (await _context.Students.FindAsync(postQuestionDto.StudentId) == null)
+                return BadRequest("Student Doesn't exist");
+            if (await _context.Courses.FindAsync(postQuestionDto.CourseId) == null)
+                return BadRequest("Course doesn't exist");
+
+            Question newQuestion = new Question()
+            {
+                Query = postQuestionDto.Query,
+                CourseId = postQuestionDto.CourseId,
+                StudentId = postQuestionDto.StudentId
+            };
+            _context.Questions.Add(newQuestion);
+
+            await _context.SaveChangesAsync();
+            return Ok(newQuestion);
+        }
+
+        [HttpGet("question/{id}")]
+        public async Task<ActionResult> GetQuestions(string courseId)
+        {
+            return Ok(await _context.Questions.Where(questionObject => questionObject.CourseId == courseId).ToListAsync());
+        }
+
+        [HttpPut("question/update")]
+        public async Task<ActionResult> UpdateQuestion(UpdateQuestionDto updateQuestionDto)
+        {
+            Question questionToUpdate = await _context.Questions.FindAsync(updateQuestionDto.QuestionId);
+            questionToUpdate.Query = updateQuestionDto.Query;
+            await _context.SaveChangesAsync();
+            return Ok(questionToUpdate);
+        }
+
+        [HttpDelete("question/delete/{id}")]
+        public async Task<ActionResult> DeleteQuestion(int id)
+        {
+            Question questionToDelete = await _context.Questions.FindAsync(id);
+            _context.Questions.Remove(questionToDelete);
+            await _context.SaveChangesAsync();
+            return Ok(questionToDelete);
+        }
+
+        [HttpPost("question/reply/new")]
+        public async Task<ActionResult> NewReply(NewReplyDto newReplyDto)
+        {
+            Reply newReply = new Reply()
+            {
+                Answer = newReplyDto.Answer,
+                QuestionId = newReplyDto.QuestionId,
+                StudentId = newReplyDto.StudentId
+            };
+
+            _context.Replies.Add(newReply);
+            await _context.SaveChangesAsync();
+
+            return Ok(newReply);
+        }
+
+        [HttpGet("question/replies/{id}")]
+        public async Task<ActionResult> GetReplies(int questionId)
+        {
+            return Ok(await _context.Replies.Where(x => x.QuestionId == questionId).ToListAsync());
+        }
+
+        [HttpDelete("question/reply/delete/{id}")]
+        public async Task<ActionResult> DeleteReply(int id)
+        {
+            Reply replyToDelete = await _context.Replies.FindAsync(id);
+            _context.Replies.Remove(replyToDelete);
+            await _context.SaveChangesAsync();
+            return Ok(replyToDelete);
+        }
+
+        [HttpPut("question/reply/update")]
+        public async Task<ActionResult> UpdateReply(UpdateReplyDto updateReplyDto)
+        {
+            Reply replyToUpdate = await _context.Replies.FindAsync(updateReplyDto.ReplyId);
+            replyToUpdate.Answer = updateReplyDto.Answer;
+            await _context.SaveChangesAsync();
+            return Ok(replyToUpdate);
         }
     }
 }

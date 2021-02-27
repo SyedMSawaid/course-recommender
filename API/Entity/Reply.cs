@@ -9,7 +9,11 @@ namespace API.Entity
     {
         public int ReplyId { get; set; }
         public string Answer { get; set; }
+        
         public int QuestionId { get; set; }
         public Question Question { get; set; }
+        
+        public int StudentId { get; set; }
+        public Student Student { get; set; }
     }
 }

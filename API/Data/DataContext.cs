@@ -23,10 +23,8 @@ namespace API.Data
         public DbSet<Enrollment> Enrollments { get; set; }
         
         public DbSet<Course> Courses { get; set; }
-        public DbSet<Topic> Topics { get; set; }
-        public DbSet<PreRequisites> PreRequisites { get; set; }
+        public DbSet<PreRequisite> PreRequisites { get; set; }
         
-        public DbSet<DiscussionBoard> DiscussionBoards { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Reply> Replies { get; set; }
         
@@ -45,13 +43,16 @@ namespace API.Data
                 .WithOne(u => u.Role)
                 .HasForeignKey(ur => ur.RoleId)
                 .IsRequired();
-            
-            modelBuilder.Entity<PreRequisites>()
-                .HasMany(e => e.PreRequisistes)
-                .WithOne(s => s.PreRequisites);
-            modelBuilder.Entity<PreRequisites>()
-                .HasMany(e => e.PreRequisiteTo)
-                .WithOne(s => s.PreRequisiteTo);
+
+            modelBuilder.Entity<PreRequisite>()
+                .HasOne(pr => pr.PreRequisites)
+                .WithMany(pr => pr.PreRequisites)
+                .HasForeignKey(m => m.PreRequisitesId);
+
+            modelBuilder.Entity<PreRequisite>()
+                .HasOne(pr => pr.PreRequisiteTo)
+                .WithMany(t => t.PreRequisiteTo)
+                .HasForeignKey(m => m.PreRequisiteToId);
         }
     }
 }

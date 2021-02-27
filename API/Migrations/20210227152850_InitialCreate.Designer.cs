@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210222034201_IdentityAdded")]
-    partial class IdentityAdded
+    [Migration("20210227152850_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -142,38 +142,12 @@ namespace API.Migrations
                     b.Property<string>("CourseName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("PreRequisiteToPrerequisiteId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("PreRequisitesPrerequisiteId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("TopicId")
+                    b.Property<int>("Credit")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("CourseId");
 
-                    b.HasIndex("PreRequisiteToPrerequisiteId");
-
-                    b.HasIndex("PreRequisitesPrerequisiteId");
-
-                    b.HasIndex("TopicId");
-
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("API.Entity.DiscussionBoard", b =>
-                {
-                    b.Property<int>("DiscussionBoardId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CourseId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("DiscussionBoardId");
-
-                    b.ToTable("DiscussionBoards");
                 });
 
             modelBuilder.Entity("API.Entity.Enrollment", b =>
@@ -182,31 +156,40 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CourseId1")
+                    b.Property<string>("CourseId")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Marks")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("EnrollmentId");
 
-                    b.HasIndex("CourseId1");
+                    b.HasIndex("CourseId");
 
                     b.HasIndex("StudentId");
 
                     b.ToTable("Enrollments");
                 });
 
-            modelBuilder.Entity("API.Entity.PreRequisites", b =>
+            modelBuilder.Entity("API.Entity.PreRequisite", b =>
                 {
-                    b.Property<int>("PrerequisiteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
 
-                    b.HasKey("PrerequisiteId");
+                    b.Property<string>("PreRequisiteToId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PreRequisitesId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PreRequisiteToId");
+
+                    b.HasIndex("PreRequisitesId");
 
                     b.ToTable("PreRequisites");
                 });
@@ -217,15 +200,20 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("DiscussionBoardId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("CourseId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Query")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("StudentId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("QuestionId");
 
-                    b.HasIndex("DiscussionBoardId");
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Questions");
                 });
@@ -247,20 +235,6 @@ namespace API.Migrations
                     b.HasIndex("QuestionId");
 
                     b.ToTable("Replies");
-                });
-
-            modelBuilder.Entity("API.Entity.Topic", b =>
-                {
-                    b.Property<int>("TopicId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TopicName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("TopicId");
-
-                    b.ToTable("Topics");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -357,9 +331,6 @@ namespace API.Migrations
                     b.Property<string>("Contact")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StudentId")
-                        .HasColumnType("TEXT");
-
                     b.HasDiscriminator().HasValue("Student");
                 });
 
@@ -392,30 +363,11 @@ namespace API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Entity.Course", b =>
-                {
-                    b.HasOne("API.Entity.PreRequisites", "PreRequisiteTo")
-                        .WithMany("PreRequisiteTo")
-                        .HasForeignKey("PreRequisiteToPrerequisiteId");
-
-                    b.HasOne("API.Entity.PreRequisites", "PreRequisites")
-                        .WithMany("PreRequisistes")
-                        .HasForeignKey("PreRequisitesPrerequisiteId");
-
-                    b.HasOne("API.Entity.Topic", null)
-                        .WithMany("Course")
-                        .HasForeignKey("TopicId");
-
-                    b.Navigation("PreRequisites");
-
-                    b.Navigation("PreRequisiteTo");
-                });
-
             modelBuilder.Entity("API.Entity.Enrollment", b =>
                 {
                     b.HasOne("API.Entity.Course", "Course")
                         .WithMany("Enrollments")
-                        .HasForeignKey("CourseId1");
+                        .HasForeignKey("CourseId");
 
                     b.HasOne("API.Entity.Student", "Student")
                         .WithMany("Enrollments")
@@ -428,15 +380,36 @@ namespace API.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("API.Entity.PreRequisite", b =>
+                {
+                    b.HasOne("API.Entity.Course", "PreRequisiteTo")
+                        .WithMany("PreRequisiteTo")
+                        .HasForeignKey("PreRequisiteToId");
+
+                    b.HasOne("API.Entity.Course", "PreRequisites")
+                        .WithMany("PreRequisites")
+                        .HasForeignKey("PreRequisitesId");
+
+                    b.Navigation("PreRequisites");
+
+                    b.Navigation("PreRequisiteTo");
+                });
+
             modelBuilder.Entity("API.Entity.Question", b =>
                 {
-                    b.HasOne("API.Entity.DiscussionBoard", "DiscussionBoard")
+                    b.HasOne("API.Entity.Course", "Course")
                         .WithMany("Questions")
-                        .HasForeignKey("DiscussionBoardId")
+                        .HasForeignKey("CourseId");
+
+                    b.HasOne("API.Entity.Student", "Student")
+                        .WithMany("Questions")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("DiscussionBoard");
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("API.Entity.Reply", b =>
@@ -499,18 +472,12 @@ namespace API.Migrations
             modelBuilder.Entity("API.Entity.Course", b =>
                 {
                     b.Navigation("Enrollments");
-                });
 
-            modelBuilder.Entity("API.Entity.DiscussionBoard", b =>
-                {
-                    b.Navigation("Questions");
-                });
-
-            modelBuilder.Entity("API.Entity.PreRequisites", b =>
-                {
-                    b.Navigation("PreRequisistes");
+                    b.Navigation("PreRequisites");
 
                     b.Navigation("PreRequisiteTo");
+
+                    b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("API.Entity.Question", b =>
@@ -518,14 +485,11 @@ namespace API.Migrations
                     b.Navigation("Replies");
                 });
 
-            modelBuilder.Entity("API.Entity.Topic", b =>
-                {
-                    b.Navigation("Course");
-                });
-
             modelBuilder.Entity("API.Entity.Student", b =>
                 {
                     b.Navigation("Enrollments");
+
+                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }
