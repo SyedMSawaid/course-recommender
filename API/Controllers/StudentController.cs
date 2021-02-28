@@ -28,12 +28,12 @@ namespace API.Controllers
             {
                 return BadRequest("Student ID already exists. Please choose a new student");
             }
-            
+
             await _context.Students.AddAsync(student);
             await _context.SaveChangesAsync();
             return Ok("Student Saved");
         }
-        
+
         [HttpGet]
         public async Task<IEnumerable<Student>> Get()
         {
@@ -49,7 +49,7 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return Ok("Student Successfully Deleted");
         }
-        
+
         [HttpPost("update")]
         public async Task<ActionResult<NewStudentDto>> Update(NewStudentDto newStudentDto)
         {
@@ -63,7 +63,7 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return Ok(studentToUpdate);
         }
-        
+
         // Enrollment methods
         [HttpPost("enroll")]
         public async Task<ActionResult> Enroll(EnrollDto enrollDto)
@@ -80,7 +80,51 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return Ok("Student successfully enrolled");
         }
+
+        [HttpGet("enrollments/{id}")]
+        public async Task<ActionResult> GetEnrollment(int id)
+        {
+            return Ok(await _context.Enrollments.Where(x => x.StudentId == id).ToListAsync());
+        }
+
+        [HttpDelete("enrollment/delete/{id}")]
+        public async Task<ActionResult> DeleteEnrollment(int id)
+        {
+            Enrollment enrollmentToDelete = await _context.Enrollments.FindAsync(id);
+            _context.Enrollments.Remove(enrollmentToDelete);
+            await _context.SaveChangesAsync();
+            return Ok(enrollmentToDelete);
+        }
+
+        [HttpPut("enrollment/update")]
+        public async Task<ActionResult> UpdateEnrollment(GiveFeedbackDto giveFeedbackDto)
+        {
+            Enrollment enrollmentToEdit = await _context.Enrollments.FindAsync(giveFeedbackDto.EnrollmentId);
+            enrollmentToEdit.Marks = giveFeedbackDto.Marks;
+            await _context.SaveChangesAsync();
+            return Ok(enrollmentToEdit);
+        }
+
+        // Questions and Replies
+        [HttpGet("question/{id}")]
+        public async Task<ActionResult> Question(int id)
+        {
+            return Ok(await _context.Questions.Where(x => x.StudentId == id).ToListAsync());
+        }
+
+        [HttpGet("replies/{id}")]
+        public async Task<ActionResult> Replies(int id)
+        {
+            return Ok(await _context.Replies.Where(x => x.StudentId == id).ToListAsync());
+        }
         
-        // TODO: List of questions a student participated in.
+        // Recommend Course
+        // [HttpGet("recommendcourse/{id}")]
+        // public async Task<ActionResult> RecommendCourse(int id)
+        // {
+        //     
+        // }
+        
+        // TODO: Implement Recommend Courses API.
     }
 }

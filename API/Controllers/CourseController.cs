@@ -165,5 +165,15 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return Ok(replyToUpdate);
         }
+        
+        // Give Feedback
+        [HttpPost("givefeedback")]
+        public async Task<ActionResult> GiveFeedback(GiveFeedbackDto giveFeedbackDto)
+        {
+            Enrollment enrollmentToEdit = await _context.Enrollments.FindAsync(giveFeedbackDto.EnrollmentId);
+            enrollmentToEdit.Marks = giveFeedbackDto.Marks;
+            await _context.SaveChangesAsync();
+            return Ok(enrollmentToEdit);
+        }
     }
 }
