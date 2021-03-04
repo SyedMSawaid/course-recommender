@@ -34,10 +34,10 @@ namespace API.Controllers
             return Ok("Student Saved");
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<Student>> Get()
+        [HttpGet("")]
+        public async Task<ActionResult> Get()
         {
-            return await _context.Students.ToListAsync();
+            return Ok(await _context.Students.ToListAsync());
         }
 
         [HttpDelete("delete/{id}")]
