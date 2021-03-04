@@ -9,7 +9,7 @@ namespace API.Data
 {
     public class Seed
     {
-        public static async Task SeedUsers(DataContext context, UserManager<AppUser> userManager,
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager,
             RoleManager<AppRole> roleManager)
         {
             if (await userManager.Users.AnyAsync()) return;
@@ -23,14 +23,15 @@ namespace API.Data
             {
                 await context.Courses.AddAsync(course);
             }
-            await context.AddRangeAsync();
+            
+            await context.SaveChangesAsync();
 
+            
             // Adding Users Data
             var userData = await System.IO.File.ReadAllTextAsync("Data/UserSeedData.json");
             var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
             if (users == null) return;
-
-            // Adding Roles
+            
             var roles = new List<AppRole>
             {
                 new AppRole {Name = "Student"},
@@ -52,10 +53,27 @@ namespace API.Data
 
             var admin = new AppUser
             {
-                UserName = "admin"
+                UserName = "admin",
             };
+            
             await userManager.CreateAsync(admin, "Pa$$w0rd");
             await userManager.AddToRolesAsync(admin, new[] {"Admin", "Moderator"});
+            
+            await context.SaveChangesAsync();
+            
+            
+            
+            // Adding Enrollment Data
+            var enrollmentDataData = await System.IO.File.ReadAllTextAsync("Data/EnrollmentSeedData.json");
+            var enrollments = JsonSerializer.Deserialize<List<Enrollment>>(enrollmentDataData);
+            if (enrollments == null) return;
+            
+            foreach (var enrollment in enrollments)
+            {
+                await context.Enrollments.AddAsync(enrollment);
+            }
+            
+            await context.SaveChangesAsync();
         }
     }
 }
