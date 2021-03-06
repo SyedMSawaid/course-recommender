@@ -21,14 +21,9 @@ namespace API.Controllers
         }
 
         // Student CRUD
+        [HttpPost("new")]
         public async Task<ActionResult> New(Student student)
         {
-            var studentToAdd = await _context.Courses.FindAsync(student.Id);
-            if (studentToAdd != null)
-            {
-                return BadRequest("Student ID already exists. Please choose a new student");
-            }
-
             await _context.Students.AddAsync(student);
             await _context.SaveChangesAsync();
             return Ok("Student Saved");
@@ -37,15 +32,16 @@ namespace API.Controllers
         [HttpGet("")]
         public async Task<ActionResult> Get()
         {
-            return Ok(await _context.Students.ToListAsync());
+            var role = await _context.Roles.Where(role => role.Name == "Student").SingleOrDefaultAsync();
+            return Ok(_context.Users.Where(user => user.UserRoles.Any(r => r.RoleId == role.Id)));
         }
 
         [HttpDelete("delete/{id}")]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var studentToDelete = await _context.Students.FindAsync(id);
+            var studentToDelete = await _context.Users.FindAsync(id);
             if (studentToDelete == null) return BadRequest("Student doesn't exist.");
-            _context.Students.Remove(studentToDelete);
+            _context.Users.Remove(studentToDelete);
             await _context.SaveChangesAsync();
             return Ok("Student Successfully Deleted");
         }
@@ -68,10 +64,9 @@ namespace API.Controllers
         [HttpPost("enroll")]
         public async Task<ActionResult> Enroll(EnrollDto enrollDto)
         {
-            if (await _context.Students.FindAsync(enrollDto.StudentId) == null)
-                return BadRequest("Student Doesn't exist");
-            if (await _context.Courses.FindAsync(enrollDto.CourseId) == null) return BadRequest("Course doesn't exist");
-
+            if (_context.Enrollments.Any(enrollment =>
+                enrollment.CourseId == enrollDto.CourseId && enrollment.StudentId == enrollDto.StudentId)) return BadRequest("Enrollment already exists");
+            
             _context.Enrollments.Add(new Enrollment()
             {
                 StudentId = enrollDto.StudentId,

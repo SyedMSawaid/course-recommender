@@ -85,10 +85,6 @@ namespace API.Controllers
         [HttpPost("question/new")]
         public async Task<ActionResult> NewQuestion(PostQuestionDto postQuestionDto)
         {
-            if (await _context.Students.FindAsync(postQuestionDto.StudentId) == null)
-                return BadRequest("Student Doesn't exist");
-            if (await _context.Courses.FindAsync(postQuestionDto.CourseId) == null)
-                return BadRequest("Course doesn't exist");
 
             Question newQuestion = new Question()
             {
@@ -103,9 +99,9 @@ namespace API.Controllers
         }
 
         [HttpGet("question/{id}")]
-        public async Task<ActionResult> GetQuestions(string courseId)
+        public async Task<ActionResult> GetQuestions(string id)
         {
-            return Ok(await _context.Questions.Where(questionObject => questionObject.CourseId == courseId).ToListAsync());
+            return Ok(await _context.Questions.Where(question => question.CourseId == id).ToListAsync());
         }
 
         [HttpPut("question/update")]
@@ -143,9 +139,9 @@ namespace API.Controllers
         }
 
         [HttpGet("question/replies/{id}")]
-        public async Task<ActionResult> GetReplies(int questionId)
+        public async Task<ActionResult> GetReplies(int id)
         {
-            return Ok(await _context.Replies.Where(x => x.QuestionId == questionId).ToListAsync());
+            return Ok(await _context.Replies.Where(x => x.QuestionId == id).ToListAsync());
         }
 
         [HttpDelete("question/reply/delete/{id}")]
