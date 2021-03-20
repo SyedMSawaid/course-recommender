@@ -10,7 +10,7 @@ namespace CourseRecommendationSystemML.ConsoleApp
 {
     public static class ModelBuilder
     {
-        private static string TRAIN_DATA_FILEPATH = @"C:\Users\syedm\source\repos\CourseRecommendationSystem\student_data.csv";
+        private static string TRAIN_DATA_FILEPATH = @"D:\STUDENT DATA\EnrollmentSeedData.csv";
         private static string MODEL_FILE = ConsumeModel.MLNetModelPath;
 
         // Create MLContext to be shared across the model creation workflow objects 
@@ -43,10 +43,10 @@ namespace CourseRecommendationSystemML.ConsoleApp
         public static IEstimator<ITransformer> BuildTrainingPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations 
-            var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("student_id", "student_id")
-                                      .Append(mlContext.Transforms.Conversion.MapValueToKey("course", "course"));
+            var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("StudentId", "StudentId")
+                                      .Append(mlContext.Transforms.Conversion.MapValueToKey("CourseId", "CourseId"));
             // Set the training algorithm 
-            var trainer = mlContext.Recommendation().Trainers.MatrixFactorization(labelColumnName: @"gpa", matrixColumnIndexColumnName: @"student_id", matrixRowIndexColumnName: @"course");
+            var trainer = mlContext.Recommendation().Trainers.MatrixFactorization(labelColumnName: @"Marks", matrixColumnIndexColumnName: @"StudentId", matrixRowIndexColumnName: @"CourseId");
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);
 

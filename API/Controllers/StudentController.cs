@@ -112,14 +112,5 @@ namespace API.Controllers
         {
             return Ok(await _context.Replies.Where(x => x.StudentId == id).ToListAsync());
         }
-        
-        // Recommend Course
-        // [HttpGet("recommendcourse/{id}")]
-        // public async Task<ActionResult> RecommendCourse(int id)
-        // {
-        //     
-        // }
-        
-        // TODO: Implement Recommend Courses API.
     }
 }

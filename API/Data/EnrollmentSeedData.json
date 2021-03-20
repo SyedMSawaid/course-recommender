@@ -1,1 +1,1477 @@
-[{"StudentId": 1, "CourseId": "CSC101", "Marks": 82}, {"StudentId": 1, "CourseId": "EEE121", "Marks": 81}, {"StudentId": 1, "CourseId": "HUM100", "Marks": 85}, {"StudentId": 1, "CourseId": "HUM110", "Marks": 75}, {"StudentId": 1, "CourseId": "MTH104", "Marks": 72}, {"StudentId": 1, "CourseId": "CSC102", "Marks": 75}, {"StudentId": 1, "CourseId": "CSC103", "Marks": 90}, {"StudentId": 1, "CourseId": "HUM102", "Marks": 80}, {"StudentId": 1, "CourseId": "HUM111", "Marks": 81}, {"StudentId": 1, "CourseId": "MTH105", "Marks": 93}, {"StudentId": 1, "CourseId": "CSC110", "Marks": 80}, {"StudentId": 1, "CourseId": "CSC241", "Marks": 87}, {"StudentId": 1, "CourseId": "EEE241", "Marks": 85}, {"StudentId": 1, "CourseId": "HUM103", "Marks": 80}, {"StudentId": 1, "CourseId": "MGT101", "Marks": 72}, {"StudentId": 1, "CourseId": "MTH242", "Marks": 85}, {"StudentId": 1, "CourseId": "CSC211", "Marks": 67}, {"StudentId": 1, "CourseId": "CSC371", "Marks": 70}, {"StudentId": 1, "CourseId": "CSE291", "Marks": 75}, {"StudentId": 1, "CourseId": "MTH231", "Marks": 70}, {"StudentId": 1, "CourseId": "MTH262", "Marks": 72}, {"StudentId": 1, "CourseId": "CSC322", "Marks": 82}, {"StudentId": 1, "CourseId": "CSC339", "Marks": 73}, {"StudentId": 1, "CourseId": "CSC462", "Marks": 66}, {"StudentId": 1, "CourseId": "CSE305", "Marks": 70}, {"StudentId": 1, "CourseId": "CSE350", "Marks": 80}, {"StudentId": 1, "CourseId": "CSC356", "Marks": 86}, {"StudentId": 1, "CourseId": "CSC412", "Marks": 80}, {"StudentId": 1, "CourseId": "CSE302", "Marks": 81}, {"StudentId": 1, "CourseId": "CSE303", "Marks": 88}, {"StudentId": 1, "CourseId": "CSE494", "Marks": 91}, {"StudentId": 1, "CourseId": "CSC353", "Marks": 83}, {"StudentId": 1, "CourseId": "CSC448", "Marks": 80}, {"StudentId": 1, "CourseId": "CSE304", "Marks": 85}, {"StudentId": 1, "CourseId": "CSE354", "Marks": 81}, {"StudentId": 1, "CourseId": "CSE455", "Marks": 76}, {"StudentId": 1, "CourseId": "CSE498", "Marks": 92}, {"StudentId": 2, "CourseId": "CSC101", "Marks": 82}, {"StudentId": 2, "CourseId": "EEE121", "Marks": 75}, {"StudentId": 2, "CourseId": "HUM100", "Marks": 77}, {"StudentId": 2, "CourseId": "HUM110", "Marks": 85}, {"StudentId": 2, "CourseId": "MTH104", "Marks": 55}, {"StudentId": 2, "CourseId": "CSC102", "Marks": 90}, {"StudentId": 2, "CourseId": "CSC103", "Marks": 90}, {"StudentId": 2, "CourseId": "HUM102", "Marks": 77}, {"StudentId": 2, "CourseId": "HUM111", "Marks": 72}, {"StudentId": 2, "CourseId": "MTH105", "Marks": 52}, {"StudentId": 2, "CourseId": "CSC110", "Marks": 70}, {"StudentId": 2, "CourseId": "CSC241", "Marks": 99}, {"StudentId": 2, "CourseId": "EEE241", "Marks": 76}, {"StudentId": 2, "CourseId": "HUM103", "Marks": 73}, {"StudentId": 2, "CourseId": "MGT101", "Marks": 94}, {"StudentId": 2, "CourseId": "MTH242", "Marks": 83}, {"StudentId": 2, "CourseId": "CSC211", "Marks": 70}, {"StudentId": 2, "CourseId": "CSC371", "Marks": 78}, {"StudentId": 2, "CourseId": "CSE291", "Marks": 78}, {"StudentId": 2, "CourseId": "MTH231", "Marks": 55}, {"StudentId": 2, "CourseId": "MTH262", "Marks": 70}, {"StudentId": 2, "CourseId": "CSC322", "Marks": 81}, {"StudentId": 2, "CourseId": "CSC339", "Marks": 82}, {"StudentId": 2, "CourseId": "CSC462", "Marks": 62}, {"StudentId": 2, "CourseId": "CSE305", "Marks": 63}, {"StudentId": 2, "CourseId": "CSE350", "Marks": 75}, {"StudentId": 2, "CourseId": "CSC356", "Marks": 76}, {"StudentId": 2, "CourseId": "CSC412", "Marks": 86}, {"StudentId": 2, "CourseId": "CSE302", "Marks": 76}, {"StudentId": 2, "CourseId": "CSE303", "Marks": 90}, {"StudentId": 2, "CourseId": "CSE494", "Marks": 80}, {"StudentId": 2, "CourseId": "CSC354", "Marks": 91}, {"StudentId": 2, "CourseId": "CSC496", "Marks": 60}, {"StudentId": 2, "CourseId": "CSE304", "Marks": 80}, {"StudentId": 2, "CourseId": "CSE354", "Marks": 83}, {"StudentId": 2, "CourseId": "CSE455", "Marks": 75}, {"StudentId": 2, "CourseId": "CSE498", "Marks": 66}, {"StudentId": 3, "CourseId": "CSC101", "Marks": 85}, {"StudentId": 3, "CourseId": "EEE121", "Marks": 85}, {"StudentId": 3, "CourseId": "HUM100", "Marks": 70}, {"StudentId": 3, "CourseId": "HUM110", "Marks": 85}, {"StudentId": 3, "CourseId": "MTH104", "Marks": 92}, {"StudentId": 3, "CourseId": "CSC102", "Marks": 91}, {"StudentId": 3, "CourseId": "CSC103", "Marks": 83}, {"StudentId": 3, "CourseId": "HUM102", "Marks": 78}, {"StudentId": 3, "CourseId": "HUM111", "Marks": 85}, {"StudentId": 3, "CourseId": "MTH105", "Marks": 78}, {"StudentId": 3, "CourseId": "CSC110", "Marks": 80}, {"StudentId": 3, "CourseId": "CSC241", "Marks": 90}, {"StudentId": 3, "CourseId": "EEE241", "Marks": 87}, {"StudentId": 3, "CourseId": "HUM103", "Marks": 75}, {"StudentId": 3, "CourseId": "MGT101", "Marks": 92}, {"StudentId": 3, "CourseId": "MTH242", "Marks": 67}, {"StudentId": 3, "CourseId": "CSC211", "Marks": 75}, {"StudentId": 3, "CourseId": "CSC371", "Marks": 83}, {"StudentId": 3, "CourseId": "CSE291", "Marks": 80}, {"StudentId": 3, "CourseId": "MTH231", "Marks": 67}, {"StudentId": 3, "CourseId": "MTH262", "Marks": 73}, {"StudentId": 3, "CourseId": "CSC322", "Marks": 80}, {"StudentId": 3, "CourseId": "CSC339", "Marks": 91}, {"StudentId": 3, "CourseId": "CSC462", "Marks": 81}, {"StudentId": 3, "CourseId": "CSE305", "Marks": 72}, {"StudentId": 3, "CourseId": "CSE350", "Marks": 73}, {"StudentId": 3, "CourseId": "CSC356", "Marks": 82}, {"StudentId": 3, "CourseId": "CSC412", "Marks": 83}, {"StudentId": 3, "CourseId": "CSE302", "Marks": 91}, {"StudentId": 3, "CourseId": "CSE303", "Marks": 90}, {"StudentId": 3, "CourseId": "CSE494", "Marks": 76}, {"StudentId": 3, "CourseId": "CSC353", "Marks": 78}, {"StudentId": 3, "CourseId": "CSC448", "Marks": 86}, {"StudentId": 3, "CourseId": "CSE304", "Marks": 75}, {"StudentId": 3, "CourseId": "CSE354", "Marks": 83}, {"StudentId": 3, "CourseId": "CSE455", "Marks": 80}, {"StudentId": 3, "CourseId": "CSE498", "Marks": 90}, {"StudentId": 4, "CourseId": "CSC101", "Marks": 70}, {"StudentId": 4, "CourseId": "EEE121", "Marks": 75}, {"StudentId": 4, "CourseId": "HUM100", "Marks": 72}, {"StudentId": 4, "CourseId": "HUM110", "Marks": 81}, {"StudentId": 4, "CourseId": "MTH104", "Marks": 70}, {"StudentId": 4, "CourseId": "CSC102", "Marks": 65}, {"StudentId": 4, "CourseId": "CSC103", "Marks": 81}, {"StudentId": 4, "CourseId": "HUM102", "Marks": 82}, {"StudentId": 4, "CourseId": "HUM111", "Marks": 91}, {"StudentId": 4, "CourseId": "MTH105", "Marks": 80}, {"StudentId": 4, "CourseId": "CSC110", "Marks": 80}, {"StudentId": 4, "CourseId": "CSC241", "Marks": 70}, {"StudentId": 4, "CourseId": "EEE241", "Marks": 70}, {"StudentId": 4, "CourseId": "HUM103", "Marks": 85}, {"StudentId": 4, "CourseId": "MGT101", "Marks": 85}, {"StudentId": 4, "CourseId": "MTH242", "Marks": 65}, {"StudentId": 4, "CourseId": "CSC211", "Marks": 57}, {"StudentId": 4, "CourseId": "CSC371", "Marks": 62}, {"StudentId": 4, "CourseId": "CSE291", "Marks": 77}, {"StudentId": 4, "CourseId": "MTH231", "Marks": 71}, {"StudentId": 4, "CourseId": "MTH262", "Marks": 70}, {"StudentId": 4, "CourseId": "CSC322", "Marks": 70}, {"StudentId": 4, "CourseId": "CSC339", "Marks": 83}, {"StudentId": 4, "CourseId": "CSC462", "Marks": 77}, {"StudentId": 4, "CourseId": "CSE305", "Marks": 72}, {"StudentId": 4, "CourseId": "CSE350", "Marks": 70}, {"StudentId": 4, "CourseId": "CSC356", "Marks": 86}, {"StudentId": 4, "CourseId": "CSC412", "Marks": 81}, {"StudentId": 4, "CourseId": "CSE302", "Marks": 82}, {"StudentId": 4, "CourseId": "CSE303", "Marks": 88}, {"StudentId": 4, "CourseId": "CSE494", "Marks": 82}, {"StudentId": 4, "CourseId": "CSC353", "Marks": 86}, {"StudentId": 4, "CourseId": "CSC448", "Marks": 80}, {"StudentId": 4, "CourseId": "CSE304", "Marks": 75}, {"StudentId": 4, "CourseId": "CSE354", "Marks": 83}, {"StudentId": 4, "CourseId": "CSE455", "Marks": 80}, {"StudentId": 4, "CourseId": "CSE498", "Marks": 75}, {"StudentId": 5, "CourseId": "CSC101", "Marks": 80}, {"StudentId": 5, "CourseId": "EEE121", "Marks": 90}, {"StudentId": 5, "CourseId": "HUM100", "Marks": 85}, {"StudentId": 5, "CourseId": "HUM110", "Marks": 80}, {"StudentId": 5, "CourseId": "MTH104", "Marks": 67}, {"StudentId": 5, "CourseId": "CSC102", "Marks": 83}, {"StudentId": 5, "CourseId": "CSC103", "Marks": 88}, {"StudentId": 5, "CourseId": "HUM102", "Marks": 76}, {"StudentId": 5, "CourseId": "HUM111", "Marks": 75}, {"StudentId": 5, "CourseId": "MTH105", "Marks": 57}, {"StudentId": 5, "CourseId": "CSC110", "Marks": 70}, {"StudentId": 5, "CourseId": "CSC241", "Marks": 77}, {"StudentId": 5, "CourseId": "EEE241", "Marks": 81}, {"StudentId": 5, "CourseId": "HUM103", "Marks": 65}, {"StudentId": 5, "CourseId": "MGT101", "Marks": 90}, {"StudentId": 5, "CourseId": "MTH242", "Marks": 52}, {"StudentId": 5, "CourseId": "CSC211", "Marks": 65}, {"StudentId": 5, "CourseId": "CSC371", "Marks": 75}, {"StudentId": 5, "CourseId": "CSE291", "Marks": 81}, {"StudentId": 5, "CourseId": "MTH231", "Marks": 65}, {"StudentId": 5, "CourseId": "MTH262", "Marks": 60}, {"StudentId": 5, "CourseId": "CSC322", "Marks": 76}, {"StudentId": 5, "CourseId": "CSC339", "Marks": 65}, {"StudentId": 5, "CourseId": "CSE305", "Marks": 70}, {"StudentId": 5, "CourseId": "CSE350", "Marks": 67}, {"StudentId": 5, "CourseId": "CSC356", "Marks": 75}, {"StudentId": 5, "CourseId": "CSC412", "Marks": 87}, {"StudentId": 5, "CourseId": "CSE302", "Marks": 81}, {"StudentId": 5, "CourseId": "CSE303", "Marks": 82}, {"StudentId": 5, "CourseId": "CSE494", "Marks": 86}, {"StudentId": 5, "CourseId": "CSC353", "Marks": 68}, {"StudentId": 5, "CourseId": "CSC448", "Marks": 81}, {"StudentId": 5, "CourseId": "CSE304", "Marks": 70}, {"StudentId": 5, "CourseId": "CSE354", "Marks": 83}, {"StudentId": 5, "CourseId": "CSE455", "Marks": 71}, {"StudentId": 5, "CourseId": "CSE498", "Marks": 75}, {"StudentId": 5, "CourseId": "BIO231", "Marks": 76}, {"StudentId": 6, "CourseId": "CSC101", "Marks": 76}, {"StudentId": 6, "CourseId": "EEE121", "Marks": 88}, {"StudentId": 6, "CourseId": "HUM100", "Marks": 82}, {"StudentId": 6, "CourseId": "HUM110", "Marks": 85}, {"StudentId": 6, "CourseId": "MTH104", "Marks": 66}, {"StudentId": 6, "CourseId": "CSC102", "Marks": 67}, {"StudentId": 6, "CourseId": "CSC103", "Marks": 75}, {"StudentId": 6, "CourseId": "HUM102", "Marks": 77}, {"StudentId": 6, "CourseId": "HUM111", "Marks": 83}, {"StudentId": 6, "CourseId": "MTH105", "Marks": 81}, {"StudentId": 6, "CourseId": "CSC110", "Marks": 80}, {"StudentId": 6, "CourseId": "CSC241", "Marks": 60}, {"StudentId": 6, "CourseId": "EEE241", "Marks": 75}, {"StudentId": 6, "CourseId": "HUM103", "Marks": 65}, {"StudentId": 6, "CourseId": "MGT101", "Marks": 90}, {"StudentId": 6, "CourseId": "CSC211", "Marks": 62}, {"StudentId": 6, "CourseId": "CSC371", "Marks": 66}, {"StudentId": 6, "CourseId": "CSE291", "Marks": 65}, {"StudentId": 6, "CourseId": "MTH231", "Marks": 65}, {"StudentId": 6, "CourseId": "MTH262", "Marks": 55}, {"StudentId": 6, "CourseId": "CSC322", "Marks": 75}, {"StudentId": 6, "CourseId": "CSC339", "Marks": 75}, {"StudentId": 6, "CourseId": "CSE305", "Marks": 63}, {"StudentId": 6, "CourseId": "CSE350", "Marks": 75}, {"StudentId": 6, "CourseId": "CSC356", "Marks": 81}, {"StudentId": 6, "CourseId": "CSC412", "Marks": 86}, {"StudentId": 6, "CourseId": "CSE302", "Marks": 77}, {"StudentId": 6, "CourseId": "CSE303", "Marks": 90}, {"StudentId": 6, "CourseId": "CSE494", "Marks": 80}, {"StudentId": 6, "CourseId": "CSC353", "Marks": 75}, {"StudentId": 6, "CourseId": "CSC448", "Marks": 80}, {"StudentId": 6, "CourseId": "CSE304", "Marks": 72}, {"StudentId": 6, "CourseId": "CSE354", "Marks": 81}, {"StudentId": 6, "CourseId": "CSE455", "Marks": 70}, {"StudentId": 6, "CourseId": "CSE498", "Marks": 80}, {"StudentId": 6, "CourseId": "BIO231", "Marks": 82}, {"StudentId": 7, "CourseId": "CSC101", "Marks": 80}, {"StudentId": 7, "CourseId": "EEE121", "Marks": 88}, {"StudentId": 7, "CourseId": "HUM100", "Marks": 80}, {"StudentId": 7, "CourseId": "HUM110", "Marks": 93}, {"StudentId": 7, "CourseId": "MTH104", "Marks": 80}, {"StudentId": 7, "CourseId": "CSC102", "Marks": 66}, {"StudentId": 7, "CourseId": "CSC103", "Marks": 75}, {"StudentId": 7, "CourseId": "HUM102", "Marks": 72}, {"StudentId": 7, "CourseId": "HUM111", "Marks": 85}, {"StudentId": 7, "CourseId": "MTH105", "Marks": 62}, {"StudentId": 7, "CourseId": "CSC110", "Marks": 77}, {"StudentId": 7, "CourseId": "CSC241", "Marks": 68}, {"StudentId": 7, "CourseId": "EEE241", "Marks": 72}, {"StudentId": 7, "CourseId": "HUM103", "Marks": 73}, {"StudentId": 7, "CourseId": "MGT101", "Marks": 87}, {"StudentId": 7, "CourseId": "MTH242", "Marks": 70}, {"StudentId": 7, "CourseId": "CSC211", "Marks": 55}, {"StudentId": 7, "CourseId": "CSC371", "Marks": 73}, {"StudentId": 7, "CourseId": "CSE291", "Marks": 80}, {"StudentId": 7, "CourseId": "MTH231", "Marks": 75}, {"StudentId": 7, "CourseId": "MTH262", "Marks": 57}, {"StudentId": 7, "CourseId": "CSC322", "Marks": 73}, {"StudentId": 7, "CourseId": "CSC339", "Marks": 75}, {"StudentId": 7, "CourseId": "CSC462", "Marks": 65}, {"StudentId": 7, "CourseId": "CSE305", "Marks": 68}, {"StudentId": 7, "CourseId": "CSE350", "Marks": 66}, {"StudentId": 7, "CourseId": "CSC356", "Marks": 81}, {"StudentId": 7, "CourseId": "CSC412", "Marks": 76}, {"StudentId": 7, "CourseId": "CSE302", "Marks": 82}, {"StudentId": 7, "CourseId": "CSE303", "Marks": 83}, {"StudentId": 7, "CourseId": "CSE494", "Marks": 86}, {"StudentId": 7, "CourseId": "CSC353", "Marks": 80}, {"StudentId": 7, "CourseId": "CSC448", "Marks": 86}, {"StudentId": 7, "CourseId": "CSE304", "Marks": 80}, {"StudentId": 7, "CourseId": "CSE354", "Marks": 85}, {"StudentId": 7, "CourseId": "CSE455", "Marks": 80}, {"StudentId": 7, "CourseId": "CSE498", "Marks": 82}, {"StudentId": 8, "CourseId": "CSC101", "Marks": 94}, {"StudentId": 8, "CourseId": "EEE121", "Marks": 80}, {"StudentId": 8, "CourseId": "HUM100", "Marks": 87}, {"StudentId": 8, "CourseId": "HUM110", "Marks": 90}, {"StudentId": 8, "CourseId": "MTH104", "Marks": 70}, {"StudentId": 8, "CourseId": "CSC102", "Marks": 75}, {"StudentId": 8, "CourseId": "CSC103", "Marks": 88}, {"StudentId": 8, "CourseId": "HUM102", "Marks": 76}, {"StudentId": 8, "CourseId": "HUM111", "Marks": 83}, {"StudentId": 8, "CourseId": "MTH105", "Marks": 70}, {"StudentId": 8, "CourseId": "CSC110", "Marks": 87}, {"StudentId": 8, "CourseId": "CSC241", "Marks": 80}, {"StudentId": 8, "CourseId": "EEE241", "Marks": 81}, {"StudentId": 8, "CourseId": "HUM103", "Marks": 82}, {"StudentId": 8, "CourseId": "MGT101", "Marks": 80}, {"StudentId": 8, "CourseId": "MTH242", "Marks": 65}, {"StudentId": 8, "CourseId": "CSC211", "Marks": 80}, {"StudentId": 8, "CourseId": "CSC371", "Marks": 70}, {"StudentId": 8, "CourseId": "CSE291", "Marks": 76}, {"StudentId": 8, "CourseId": "MTH231", "Marks": 55}, {"StudentId": 8, "CourseId": "MTH262", "Marks": 71}, {"StudentId": 8, "CourseId": "CSC322", "Marks": 80}, {"StudentId": 8, "CourseId": "CSC339", "Marks": 66}, {"StudentId": 8, "CourseId": "CSC462", "Marks": 85}, {"StudentId": 8, "CourseId": "CSE305", "Marks": 81}, {"StudentId": 8, "CourseId": "CSE350", "Marks": 57}, {"StudentId": 8, "CourseId": "CSC356", "Marks": 82}, {"StudentId": 8, "CourseId": "CSC412", "Marks": 86}, {"StudentId": 8, "CourseId": "CSE302", "Marks": 76}, {"StudentId": 8, "CourseId": "CSE303", "Marks": 81}, {"StudentId": 8, "CourseId": "CSE494", "Marks": 77}, {"StudentId": 8, "CourseId": "CSC353", "Marks": 85}, {"StudentId": 8, "CourseId": "CSC448", "Marks": 80}, {"StudentId": 8, "CourseId": "CSE304", "Marks": 80}, {"StudentId": 8, "CourseId": "CSE354", "Marks": 83}, {"StudentId": 8, "CourseId": "CSE455", "Marks": 75}, {"StudentId": 8, "CourseId": "CSE498", "Marks": 75}]
+[
+    {
+        "StudentId": 1,
+        "CourseId": "CSC101",
+        "Marks": 82
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "EEE121",
+        "Marks": 81
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "HUM100",
+        "Marks": 85
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "HUM110",
+        "Marks": 75
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "MTH104",
+        "Marks": 72
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC102",
+        "Marks": 75
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC103",
+        "Marks": 90
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "HUM102",
+        "Marks": 80
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "HUM111",
+        "Marks": 81
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "MTH105",
+        "Marks": 93
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC110",
+        "Marks": 80
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC241",
+        "Marks": 87
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "EEE241",
+        "Marks": 85
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "HUM103",
+        "Marks": 80
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "MGT101",
+        "Marks": 72
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "MTH242",
+        "Marks": 85
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC211",
+        "Marks": 67
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC371",
+        "Marks": 70
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSE291",
+        "Marks": 75
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "MTH231",
+        "Marks": 70
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "MTH262",
+        "Marks": 72
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC322",
+        "Marks": 82
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC339",
+        "Marks": 73
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC462",
+        "Marks": 66
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSE305",
+        "Marks": 70
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSE350",
+        "Marks": 80
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC356",
+        "Marks": 86
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC412",
+        "Marks": 80
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSE302",
+        "Marks": 81
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSE303",
+        "Marks": 88
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSE494",
+        "Marks": 91
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC353",
+        "Marks": 83
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSC448",
+        "Marks": 80
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSE304",
+        "Marks": 85
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSE354",
+        "Marks": 81
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSE455",
+        "Marks": 76
+    },
+    {
+        "StudentId": 1,
+        "CourseId": "CSE498",
+        "Marks": 92
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC101",
+        "Marks": 82
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "EEE121",
+        "Marks": 75
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "HUM100",
+        "Marks": 77
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "HUM110",
+        "Marks": 85
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "MTH104",
+        "Marks": 55
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC102",
+        "Marks": 90
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC103",
+        "Marks": 90
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "HUM102",
+        "Marks": 77
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "HUM111",
+        "Marks": 72
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "MTH105",
+        "Marks": 52
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC110",
+        "Marks": 70
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC241",
+        "Marks": 99
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "EEE241",
+        "Marks": 76
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "HUM103",
+        "Marks": 73
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "MGT101",
+        "Marks": 94
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "MTH242",
+        "Marks": 83
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC211",
+        "Marks": 70
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC371",
+        "Marks": 78
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSE291",
+        "Marks": 78
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "MTH231",
+        "Marks": 55
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "MTH262",
+        "Marks": 70
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC322",
+        "Marks": 81
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC339",
+        "Marks": 82
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC462",
+        "Marks": 62
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSE305",
+        "Marks": 63
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSE350",
+        "Marks": 75
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC356",
+        "Marks": 76
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC412",
+        "Marks": 86
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSE302",
+        "Marks": 76
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSE303",
+        "Marks": 90
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSE494",
+        "Marks": 80
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC354",
+        "Marks": 91
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSC496",
+        "Marks": 60
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSE304",
+        "Marks": 80
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSE354",
+        "Marks": 83
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSE455",
+        "Marks": 75
+    },
+    {
+        "StudentId": 2,
+        "CourseId": "CSE498",
+        "Marks": 66
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC101",
+        "Marks": 85
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "EEE121",
+        "Marks": 85
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "HUM100",
+        "Marks": 70
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "HUM110",
+        "Marks": 85
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "MTH104",
+        "Marks": 92
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC102",
+        "Marks": 91
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC103",
+        "Marks": 83
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "HUM102",
+        "Marks": 78
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "HUM111",
+        "Marks": 85
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "MTH105",
+        "Marks": 78
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC110",
+        "Marks": 80
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC241",
+        "Marks": 90
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "EEE241",
+        "Marks": 87
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "HUM103",
+        "Marks": 75
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "MGT101",
+        "Marks": 92
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "MTH242",
+        "Marks": 67
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC211",
+        "Marks": 75
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC371",
+        "Marks": 83
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSE291",
+        "Marks": 80
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "MTH231",
+        "Marks": 67
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "MTH262",
+        "Marks": 73
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC322",
+        "Marks": 80
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC339",
+        "Marks": 91
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC462",
+        "Marks": 81
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSE305",
+        "Marks": 72
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSE350",
+        "Marks": 73
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC356",
+        "Marks": 82
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC412",
+        "Marks": 83
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSE302",
+        "Marks": 91
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSE303",
+        "Marks": 90
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSE494",
+        "Marks": 76
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC353",
+        "Marks": 78
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSC448",
+        "Marks": 86
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSE304",
+        "Marks": 75
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSE354",
+        "Marks": 83
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSE455",
+        "Marks": 80
+    },
+    {
+        "StudentId": 3,
+        "CourseId": "CSE498",
+        "Marks": 90
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC101",
+        "Marks": 70
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "EEE121",
+        "Marks": 75
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "HUM100",
+        "Marks": 72
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "HUM110",
+        "Marks": 81
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "MTH104",
+        "Marks": 70
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC102",
+        "Marks": 65
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC103",
+        "Marks": 81
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "HUM102",
+        "Marks": 82
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "HUM111",
+        "Marks": 91
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "MTH105",
+        "Marks": 80
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC110",
+        "Marks": 80
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC241",
+        "Marks": 70
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "EEE241",
+        "Marks": 70
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "HUM103",
+        "Marks": 85
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "MGT101",
+        "Marks": 85
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "MTH242",
+        "Marks": 65
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC211",
+        "Marks": 57
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC371",
+        "Marks": 62
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSE291",
+        "Marks": 77
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "MTH231",
+        "Marks": 71
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "MTH262",
+        "Marks": 70
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC322",
+        "Marks": 70
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC339",
+        "Marks": 83
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC462",
+        "Marks": 77
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSE305",
+        "Marks": 72
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSE350",
+        "Marks": 70
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC356",
+        "Marks": 86
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC412",
+        "Marks": 81
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSE302",
+        "Marks": 82
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSE303",
+        "Marks": 88
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSE494",
+        "Marks": 82
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC353",
+        "Marks": 86
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSC448",
+        "Marks": 80
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSE304",
+        "Marks": 75
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSE354",
+        "Marks": 83
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSE455",
+        "Marks": 80
+    },
+    {
+        "StudentId": 4,
+        "CourseId": "CSE498",
+        "Marks": 75
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC101",
+        "Marks": 80
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "EEE121",
+        "Marks": 90
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "HUM100",
+        "Marks": 85
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "HUM110",
+        "Marks": 80
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "MTH104",
+        "Marks": 67
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC102",
+        "Marks": 83
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC103",
+        "Marks": 88
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "HUM102",
+        "Marks": 76
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "HUM111",
+        "Marks": 75
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "MTH105",
+        "Marks": 57
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC110",
+        "Marks": 70
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC241",
+        "Marks": 77
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "EEE241",
+        "Marks": 81
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "HUM103",
+        "Marks": 65
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "MGT101",
+        "Marks": 90
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "MTH242",
+        "Marks": 52
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC211",
+        "Marks": 65
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC371",
+        "Marks": 75
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSE291",
+        "Marks": 81
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "MTH231",
+        "Marks": 65
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "MTH262",
+        "Marks": 60
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC322",
+        "Marks": 76
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC339",
+        "Marks": 65
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSE305",
+        "Marks": 70
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSE350",
+        "Marks": 67
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC356",
+        "Marks": 75
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC412",
+        "Marks": 87
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSE302",
+        "Marks": 81
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSE303",
+        "Marks": 82
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSE494",
+        "Marks": 86
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC353",
+        "Marks": 68
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSC448",
+        "Marks": 81
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSE304",
+        "Marks": 70
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSE354",
+        "Marks": 83
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSE455",
+        "Marks": 71
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "CSE498",
+        "Marks": 75
+    },
+    {
+        "StudentId": 5,
+        "CourseId": "BIO231",
+        "Marks": 76
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC101",
+        "Marks": 76
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "EEE121",
+        "Marks": 88
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "HUM100",
+        "Marks": 82
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "HUM110",
+        "Marks": 85
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "MTH104",
+        "Marks": 66
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC102",
+        "Marks": 67
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC103",
+        "Marks": 75
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "HUM102",
+        "Marks": 77
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "HUM111",
+        "Marks": 83
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "MTH105",
+        "Marks": 81
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC110",
+        "Marks": 80
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC241",
+        "Marks": 60
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "EEE241",
+        "Marks": 75
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "HUM103",
+        "Marks": 65
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "MGT101",
+        "Marks": 90
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC211",
+        "Marks": 62
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC371",
+        "Marks": 66
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSE291",
+        "Marks": 65
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "MTH231",
+        "Marks": 65
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "MTH262",
+        "Marks": 55
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC322",
+        "Marks": 75
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC339",
+        "Marks": 75
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSE305",
+        "Marks": 63
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSE350",
+        "Marks": 75
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC356",
+        "Marks": 81
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC412",
+        "Marks": 86
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSE302",
+        "Marks": 77
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSE303",
+        "Marks": 90
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSE494",
+        "Marks": 80
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC353",
+        "Marks": 75
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSC448",
+        "Marks": 80
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSE304",
+        "Marks": 72
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSE354",
+        "Marks": 81
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSE455",
+        "Marks": 70
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "CSE498",
+        "Marks": 80
+    },
+    {
+        "StudentId": 6,
+        "CourseId": "BIO231",
+        "Marks": 82
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC101",
+        "Marks": 80
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "EEE121",
+        "Marks": 88
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "HUM100",
+        "Marks": 80
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "HUM110",
+        "Marks": 93
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "MTH104",
+        "Marks": 80
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC102",
+        "Marks": 66
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC103",
+        "Marks": 75
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "HUM102",
+        "Marks": 72
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "HUM111",
+        "Marks": 85
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "MTH105",
+        "Marks": 62
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC110",
+        "Marks": 77
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC241",
+        "Marks": 68
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "EEE241",
+        "Marks": 72
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "HUM103",
+        "Marks": 73
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "MGT101",
+        "Marks": 87
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "MTH242",
+        "Marks": 70
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC211",
+        "Marks": 55
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC371",
+        "Marks": 73
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSE291",
+        "Marks": 80
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "MTH231",
+        "Marks": 75
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "MTH262",
+        "Marks": 57
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC322",
+        "Marks": 73
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC339",
+        "Marks": 75
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC462",
+        "Marks": 65
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSE305",
+        "Marks": 68
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSE350",
+        "Marks": 66
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC356",
+        "Marks": 81
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC412",
+        "Marks": 76
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSE302",
+        "Marks": 82
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSE303",
+        "Marks": 83
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSE494",
+        "Marks": 86
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC353",
+        "Marks": 80
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSC448",
+        "Marks": 86
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSE304",
+        "Marks": 80
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSE354",
+        "Marks": 85
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSE455",
+        "Marks": 80
+    },
+    {
+        "StudentId": 7,
+        "CourseId": "CSE498",
+        "Marks": 82
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC101",
+        "Marks": 94
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "EEE121",
+        "Marks": 80
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "HUM100",
+        "Marks": 87
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "HUM110",
+        "Marks": 90
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "MTH104",
+        "Marks": 70
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC102",
+        "Marks": 75
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC103",
+        "Marks": 88
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "HUM102",
+        "Marks": 76
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "HUM111",
+        "Marks": 83
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "MTH105",
+        "Marks": 70
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC110",
+        "Marks": 87
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC241",
+        "Marks": 80
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "EEE241",
+        "Marks": 81
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "HUM103",
+        "Marks": 82
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "MGT101",
+        "Marks": 80
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "MTH242",
+        "Marks": 65
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC211",
+        "Marks": 80
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC371",
+        "Marks": 70
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSE291",
+        "Marks": 76
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "MTH231",
+        "Marks": 55
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "MTH262",
+        "Marks": 71
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC322",
+        "Marks": 80
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC339",
+        "Marks": 66
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC462",
+        "Marks": 85
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSE305",
+        "Marks": 81
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSE350",
+        "Marks": 57
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC356",
+        "Marks": 82
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC412",
+        "Marks": 86
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSE302",
+        "Marks": 76
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSE303",
+        "Marks": 81
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSE494",
+        "Marks": 77
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC353",
+        "Marks": 85
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSC448",
+        "Marks": 80
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSE304",
+        "Marks": 80
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSE354",
+        "Marks": 83
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSE455",
+        "Marks": 75
+    },
+    {
+        "StudentId": 8,
+        "CourseId": "CSE498",
+        "Marks": 75
+    }
+]
