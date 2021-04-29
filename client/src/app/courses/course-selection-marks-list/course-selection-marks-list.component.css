@@ -1,0 +1,18 @@
+.center-container {
+  width: 500px;
+  display: table;
+  margin: 50px auto;
+}
+
+.input-group-text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group {
+  margin-top: 10px;
+}
+
+.btn {
+  margin-top: 10px;
+}

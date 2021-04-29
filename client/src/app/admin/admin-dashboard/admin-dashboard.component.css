@@ -1,0 +1,13 @@
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  align-self: center;
+}

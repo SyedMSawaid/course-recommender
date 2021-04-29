@@ -1,6 +1,9 @@
 .center-container {
-  width: 500px;
-  height: 400px;
   display: table;
   margin: 50px auto;
+}
+
+.card {
+  display: inline-block;
+  margin-right: 10px;
 }
