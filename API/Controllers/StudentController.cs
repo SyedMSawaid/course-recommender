@@ -55,6 +55,7 @@ namespace API.Controllers
 
             studentToUpdate.Address = newStudentDto.Address;
             studentToUpdate.Contact = newStudentDto.Contact;
+            studentToUpdate.FullName = newStudentDto.FullName;
 
             await _context.SaveChangesAsync();
             return Ok(studentToUpdate);

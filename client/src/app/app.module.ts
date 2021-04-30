@@ -23,6 +23,7 @@ import { AdminCourseEditComponent } from './admin/admin-course-edit/admin-course
 import { AdminStudentEditComponent } from './admin/admin-student-edit/admin-student-edit.component';
 import { AdminStudentListComponent } from './admin/admin-student-list/admin-student-list.component';
 import { AdminCourseListComponent } from './admin/admin-course-list/admin-course-list.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { AdminCourseListComponent } from './admin/admin-course-list/admin-course
     AdminCourseEditComponent,
     AdminStudentEditComponent,
     AdminStudentListComponent,
-    AdminCourseListComponent
+    AdminCourseListComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -51,6 +52,7 @@ import { AdminCourseListComponent } from './admin/admin-course-list/admin-course
     CollapseModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
