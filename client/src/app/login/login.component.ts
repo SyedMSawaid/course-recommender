@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     this.accountService.login(this.model).subscribe(
       response => {
         console.log(response);
+        this.router.navigateByUrl('/dashboard');
       }, error => {
         console.error(error);
       }

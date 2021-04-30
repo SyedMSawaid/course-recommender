@@ -1,5 +1,6 @@
 import {Component, OnInit } from '@angular/core';
 import {AccountService} from '../_services/account.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,7 @@ export class SignupComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -18,6 +19,7 @@ export class SignupComponent implements OnInit {
   register(): any {
     return this.accountService.register(this.model).subscribe(response => {
       console.log(response);
+      this.router.navigateByUrl('/dashboard');
     }, error => {
       console.error(error);
     });
