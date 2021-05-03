@@ -1,3 +1,19 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Deletion</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to delete {{ studentToDelete.userName }}? <br>
+    <button type="button" class="btn btn-danger" (click)="sureDelete(studentToDelete)">Yes</button>
+    <button type="button" class="btn btn-light" (click)="modalRef.hide()">No</button>
+  </div>
+</ng-template>
+
+
+<button routerLink="/admin/students/new" type="button" class="btn btn-primary">Add New Student</button>
 <table class="table">
   <thead class="thead-dark">
   <tr>
@@ -12,7 +28,7 @@
     <td>{{ student.fullName }}</td>
     <td>
       <button routerLink="/admin/students/edit/{{ student.id }}" type="button" class="btn btn-primary">Edit</button>
-<!--      <button (click)="openModal(template, course)" type="button" class="btn btn-danger">Delete</button>-->
+      <button (click)="openModal(template, student)" type="button" class="btn btn-danger">Delete</button>
     </td>
   </tr>
   </tbody>

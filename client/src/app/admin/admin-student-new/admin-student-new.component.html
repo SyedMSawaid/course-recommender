@@ -1,0 +1,15 @@
+<form (ngSubmit)="createNew()">
+  <div class="form-group">
+    <label for="studentUsername">Student ID</label>
+    <input [(ngModel)]="model.userName" type="text" class="form-control" id="studentUsername" name="userName">
+  </div>
+  <div class="form-group">
+    <label for="studentFullName">Student Fullname</label>
+    <input [(ngModel)]="model.fullName" type="text" class="form-control" id="studentFullName" name="fullName">
+  </div>
+  <div class="form-group">
+    <label for="studentEmail">Student Email</label>
+    <input [(ngModel)]="model.email" type="email" class="form-control" id="studentEmail" name="email">
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>

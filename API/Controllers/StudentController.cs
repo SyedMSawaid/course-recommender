@@ -36,6 +36,12 @@ namespace API.Controllers
             return Ok(_context.Users.Where(user => user.UserRoles.Any(r => r.RoleId == role.Id)));
         }
 
+        [HttpGet("{id}")]
+        public async Task<AppUser> Get(int id)
+        {
+            return await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         [HttpDelete("delete/{id}")]
         public async Task<ActionResult> Delete(int id)
         {
@@ -46,15 +52,14 @@ namespace API.Controllers
             return Ok("Student Successfully Deleted");
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<ActionResult<NewStudentDto>> Update(NewStudentDto newStudentDto)
         {
-            var studentToUpdate = await _context.Students.FindAsync(newStudentDto.Id);
+            var studentToUpdate = await _context.Users.FindAsync(newStudentDto.Id);
             if (studentToUpdate == null)
                 return BadRequest("Student doesn't exists");
 
-            studentToUpdate.Address = newStudentDto.Address;
-            studentToUpdate.Contact = newStudentDto.Contact;
+            studentToUpdate.Email = newStudentDto.Email;
             studentToUpdate.FullName = newStudentDto.FullName;
 
             await _context.SaveChangesAsync();

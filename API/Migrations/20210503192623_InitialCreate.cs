@@ -29,6 +29,7 @@ namespace API.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FullName = table.Column<string>(type: "text", nullable: true),
                     Discriminator = table.Column<string>(type: "text", nullable: false),
                     Contact = table.Column<string>(type: "text", nullable: true),
                     Address = table.Column<string>(type: "text", nullable: true),
@@ -197,7 +198,7 @@ namespace API.Migrations
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -216,13 +217,13 @@ namespace API.Migrations
                         column: x => x.PreRequisitesId,
                         principalTable: "Courses",
                         principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PreRequisites_Courses_PreRequisiteToId",
                         column: x => x.PreRequisiteToId,
                         principalTable: "Courses",
                         principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,7 +250,7 @@ namespace API.Migrations
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
