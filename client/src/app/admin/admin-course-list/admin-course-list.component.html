@@ -1,171 +1,38 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Deletion</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to delete {{ courseToDelete.courseName }}? <br>
+    <button type="button" class="btn btn-danger" (click)="sureDelete(courseToDelete)">Yes</button>
+    <button type="button" class="btn btn-light" (click)="modalRef.hide()">No</button>
+  </div>
+</ng-template>
+
+
+<button routerLink="/admin/courses/new" type="button" class="btn btn-primary">Add New Course</button>
 <table class="table">
   <thead class="thead-dark">
   <tr>
     <th scope="col">Course ID</th>
     <th scope="col">Course Name</th>
+    <th scope="col">Credit</th>
     <th scope="col">Operations</th>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
+  <tr *ngFor="let course of courses$ | async">
+    <th scope="row">{{ course.courseId }}</th>
+    <td>{{ course.courseName }}</td>
+    <td> {{course.credit }} </td>
     <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
+      <button routerLink="/admin/courses/edit/{{ course.courseId }}" type="button" class="btn btn-primary">Edit</button>
+      <button (click)="openModal(template, course)" type="button" class="btn btn-danger">Delete</button>
     </td>
   </tr>
   </tbody>
 </table>
+

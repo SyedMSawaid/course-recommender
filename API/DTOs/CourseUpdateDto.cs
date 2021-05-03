@@ -6,5 +6,6 @@ namespace API.DTOs
         public string NewPrimaryKey { get; set; }
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
+        public int Credit { get; set; }
     }
 }

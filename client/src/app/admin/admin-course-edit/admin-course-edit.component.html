@@ -1,1 +1,19 @@
-<p>admin-course-edit works!</p>
+<form (ngSubmit)="update()">
+  <div class="form-group">
+    <label for="courseId">Course ID</label>
+    <input [(ngModel)]="course.courseId" type="text" class="form-control" id="courseId" name="courseId">
+  </div>
+  <div class="form-group">
+    <label for="courseName">Course Name</label>
+    <input [(ngModel)]="course.courseName" type="text" class="form-control" id="courseName" name="courseName">
+  </div>
+  <div class="form-group">
+    <label for="courseDescription">Course Description</label>
+    <textarea [(ngModel)]="course.courseDescription" class="form-control" id="courseDescription" name="courseDescription"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="credit">Course Credit</label>
+    <input [(ngModel)]="course.credit" type="number" class="form-control" id="credit" name="credit">
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>

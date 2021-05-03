@@ -38,6 +38,12 @@ namespace API.Controllers
             return Ok("Course Saved");
         }
 
+        [HttpGet("{id}")]
+        public async Task<Course> Get(string id)
+        {
+            return await _context.Courses.FirstOrDefaultAsync(course => course.CourseId == id);
+        }
+
         [HttpGet]
         public async Task<IEnumerable<Course>> Get()
         {
@@ -61,20 +67,16 @@ namespace API.Controllers
             if (courseToUpdate == null) return BadRequest("Course doesn't exist");
             if (courseUpdateDto.CourseId != courseUpdateDto.NewPrimaryKey)
             {
-                // Giving new primary key
-                _context.Courses.Remove(courseToUpdate);
-                Course newCourse = new Course()
-                {
-                    CourseId = courseUpdateDto.NewPrimaryKey,
-                    CourseName = courseUpdateDto.CourseName,
-                    CourseDescription = courseUpdateDto.CourseDescription
-                };
-                await _context.Courses.AddAsync(newCourse);
+                courseToUpdate.CourseId = courseUpdateDto.NewPrimaryKey;
+                courseToUpdate.CourseName = courseUpdateDto.CourseName;
+                courseToUpdate.CourseDescription = courseUpdateDto.CourseDescription;
+                courseToUpdate.Credit = courseToUpdate.Credit;
             }
             else
             {
                 courseToUpdate.CourseName = courseUpdateDto.CourseName;
                 courseToUpdate.CourseDescription = courseUpdateDto.CourseDescription;
+                courseToUpdate.Credit = courseUpdateDto.Credit;
             }
 
             await _context.SaveChangesAsync();

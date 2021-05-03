@@ -12,6 +12,8 @@ import {RecommendedComponent} from './courses/recommended/recommended.component'
 import {AdminDashboardComponent} from './admin/admin-dashboard/admin-dashboard.component';
 import {AdminCourseListComponent} from './admin/admin-course-list/admin-course-list.component';
 import {AdminStudentListComponent} from './admin/admin-student-list/admin-student-list.component';
+import {AdminCourseEditComponent} from './admin/admin-course-edit/admin-course-edit.component';
+import {AdminCourseNewComponent} from './admin/admin-course-new/admin-course-new.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,7 +29,14 @@ const routes: Routes = [
     path: 'admin',
     children: [
       { path: 'dashboard', component: AdminDashboardComponent },
-      { path: 'courses', component: AdminCourseListComponent },
+      {
+        path: 'courses',
+        children: [
+          { path: '', component: AdminCourseListComponent },
+          { path: 'edit/:courseId', component: AdminCourseEditComponent },
+          { path: 'new', component: AdminCourseNewComponent },
+        ]
+      },
       { path: 'students', component: AdminStudentListComponent },
     ]
   }

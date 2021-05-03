@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseDetailComponent } from './courses/course-detail/course-detail.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +25,7 @@ import { AdminStudentEditComponent } from './admin/admin-student-edit/admin-stud
 import { AdminStudentListComponent } from './admin/admin-student-list/admin-student-list.component';
 import { AdminCourseListComponent } from './admin/admin-course-list/admin-course-list.component';
 import {HttpClientModule} from '@angular/common/http';
+import { AdminCourseNewComponent } from './admin/admin-course-new/admin-course-new.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import {HttpClientModule} from '@angular/common/http';
     AdminStudentEditComponent,
     AdminStudentListComponent,
     AdminCourseListComponent,
+    AdminCourseNewComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -52,7 +55,8 @@ import {HttpClientModule} from '@angular/common/http';
     CollapseModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
