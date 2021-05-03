@@ -14,6 +14,7 @@ import {AdminCourseListComponent} from './admin/admin-course-list/admin-course-l
 import {AdminStudentListComponent} from './admin/admin-student-list/admin-student-list.component';
 import {AdminCourseEditComponent} from './admin/admin-course-edit/admin-course-edit.component';
 import {AdminCourseNewComponent} from './admin/admin-course-new/admin-course-new.component';
+import {AdminStudentEditComponent} from './admin/admin-student-edit/admin-student-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -37,7 +38,13 @@ const routes: Routes = [
           { path: 'new', component: AdminCourseNewComponent },
         ]
       },
-      { path: 'students', component: AdminStudentListComponent },
+      {
+        path: 'students',
+        children: [
+          { path: '', component: AdminStudentListComponent },
+          { path: 'edit/:studentId', component: AdminStudentEditComponent }
+        ]
+      },
     ]
   }
 ];

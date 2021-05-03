@@ -1,6 +1,8 @@
 import {Enrollment} from './Enrollment';
 
 export interface Student {
-  studentId: string;
-  enrollments: Enrollment[];
+  id: number;
+  fullName: string;
+  userName: string;
+  email: string;
 }
