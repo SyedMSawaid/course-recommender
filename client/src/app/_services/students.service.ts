@@ -76,4 +76,8 @@ export class StudentsService {
   editEnrollment(enrollment: Enrollment): any {
     return this.http.put(this.baseUrl + 'student/enrollment/update', enrollment);
   }
+
+  deleteEnrollment(id: number): any {
+    return this.http.delete(this.baseUrl + `student/enrollment/delete/${id}`);
+  }
 }
