@@ -1,0 +1,7 @@
+<form (ngSubmit)="update()">
+  <div class="form-group">
+    <label for="marks">Enter Marks</label>
+    <input [(ngModel)]="model.marks" type="number" class="form-control" id="marks" name="marks">
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>

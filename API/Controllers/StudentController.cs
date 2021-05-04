@@ -82,6 +82,12 @@ namespace API.Controllers
             return Ok("Student successfully enrolled");
         }
 
+        [HttpGet("enrollment/{id}")]
+        public async Task<Enrollment> GetSingleEnrollment(int id)
+        {
+            return await _context.Enrollments.FirstOrDefaultAsync(x => x.EnrollmentId == id);
+        }
+
         [HttpGet("enrollments/{id}")]
         public async Task<ActionResult> GetEnrollment(int id)
         {

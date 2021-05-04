@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Course} from '../_models/Course';
+import {Enrollment} from '../_models/Enrollment';
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +58,22 @@ export class StudentsService {
         console.log(this.students);
       }
     );
+  }
+
+  showEnrollments(): any {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return this.http.get(this.baseUrl + `student/enrollments/${user.id}`);
+  }
+
+  getEnrollment(id: number): any {
+    this.http.get<Enrollment>(this.baseUrl + 'student/enrollment/' + id).subscribe(
+      next => {
+        return next;
+      }
+    );
+  }
+
+  editEnrollment(enrollment: Enrollment): any {
+    return this.http.put(this.baseUrl + 'student/enrollment/update', enrollment);
   }
 }

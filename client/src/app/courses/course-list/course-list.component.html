@@ -10,30 +10,12 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>75</td>
+  <tr *ngFor="let enrollment of enrollments$ | async">
+    <th scope="row">{{ enrollment.courseId }}</th>
+    <td>{{ returnCourseName(enrollment.courseId) }}</td>
+    <td>{{ enrollment.marks }}</td>
     <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>75</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <th scope="row">SAD234</th>
-    <td>Introduction to Computing and Technology</td>
-    <td>75</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
+      <button routerLink="/enrollment/{{ enrollment.enrollmentId }}" type="button" class="btn btn-primary">Edit</button>
       <button type="button" class="btn btn-danger">Delete</button>
     </td>
   </tr>

@@ -16,6 +16,7 @@ import {AdminCourseEditComponent} from './admin/admin-course-edit/admin-course-e
 import {AdminCourseNewComponent} from './admin/admin-course-new/admin-course-new.component';
 import {AdminStudentEditComponent} from './admin/admin-student-edit/admin-student-edit.component';
 import {AdminStudentNewComponent} from './admin/admin-student-new/admin-student-new.component';
+import {EnrollmentEditComponent} from './courses/enrollment-edit/enrollment-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'history', component: CourseListComponent },
   { path: 'course-detail', component: CourseDetailComponent },
+  { path: 'enrollment/:enrollmentId', component: EnrollmentEditComponent },
   { path: 'selection', component: CourseSelectionListComponent },
   { path: 'enter-marks', component: CourseSelectionMarksListComponent },
   { path: 'recommended', component: RecommendedComponent },

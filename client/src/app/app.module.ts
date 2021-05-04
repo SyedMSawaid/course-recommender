@@ -27,6 +27,7 @@ import { AdminCourseListComponent } from './admin/admin-course-list/admin-course
 import {HttpClientModule} from '@angular/common/http';
 import { AdminCourseNewComponent } from './admin/admin-course-new/admin-course-new.component';
 import { AdminStudentNewComponent } from './admin/admin-student-new/admin-student-new.component';
+import { EnrollmentEditComponent } from './courses/enrollment-edit/enrollment-edit.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AdminStudentNewComponent } from './admin/admin-student-new/admin-studen
     AdminCourseListComponent,
     AdminCourseNewComponent,
     AdminStudentNewComponent,
+    EnrollmentEditComponent,
   ],
   imports: [
     BrowserAnimationsModule,
