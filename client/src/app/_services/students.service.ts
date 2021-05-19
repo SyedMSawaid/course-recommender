@@ -80,4 +80,12 @@ export class StudentsService {
       }
     );
   }
+
+  updateEnrollment(enrollment: NewEnrollment[]): any {
+    return this.http.put(this.baseUrl + `student/enrollment/update`, enrollment).subscribe(
+      next => {
+        return next;
+      }
+    );
+  }
 }

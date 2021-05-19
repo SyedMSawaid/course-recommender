@@ -17,6 +17,7 @@ import {AdminCourseNewComponent} from './admin/admin-course-new/admin-course-new
 import {AdminStudentEditComponent} from './admin/admin-student-edit/admin-student-edit.component';
 import {AdminStudentNewComponent} from './admin/admin-student-new/admin-student-new.component';
 import {EnrollmentEditComponent} from './courses/enrollment-edit/enrollment-edit.component';
+import {GiveFeedbackComponent} from './courses/give-feedback/give-feedback.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'enrollment/:enrollmentId', component: EnrollmentEditComponent },
   { path: 'selection', component: CourseSelectionListComponent },
   { path: 'enter-marks', component: CourseSelectionMarksListComponent },
+  { path: 'give-feedback', component: GiveFeedbackComponent },
   { path: 'recommended', component: RecommendedComponent },
   {
     path: 'admin',

@@ -89,16 +89,16 @@ namespace API.Controllers
         [HttpGet("dashboard/{studentId}")]
         public async Task<List<Course>> Dashboard(int studentId)
         {
-            List<Course> coursesList = await _context.Courses.ToListAsync();
+            List<Course> coursesList = new List<Course>();
             List<Course> enrollments =
-                await _context.Enrollments.Where(x => x.StudentId == studentId && x.Marks != 0).Select(p => new Course()
+                await _context.Enrollments.Where(x => x.StudentId == studentId && x.Marks == 0).Select(p => new Course()
                 {
                     CourseId = p.CourseId
                 }).ToListAsync();
                 
             foreach (var enrollment in enrollments)
             {
-                coursesList.RemoveAll(x => x.CourseId == enrollment.CourseId);
+                coursesList.Add(await _context.Courses.FirstOrDefaultAsync(x => x.CourseId == enrollment.CourseId));
             }
             
             return coursesList;
@@ -142,12 +142,21 @@ namespace API.Controllers
         }
 
         [HttpPut("enrollment/update")]
-        public async Task<ActionResult> UpdateEnrollment(GiveFeedbackDto giveFeedbackDto)
+        public async Task<ActionResult> UpdateEnrollment(List<EnrollDto> enrollDto)
         {
-            Enrollment enrollmentToEdit = await _context.Enrollments.FindAsync(giveFeedbackDto.EnrollmentId);
-            enrollmentToEdit.Marks = giveFeedbackDto.Marks;
+            List<Enrollment> enrollments = new List<Enrollment>();
+            foreach (var dto in enrollDto)
+            {
+                Enrollment enrollmentToUpdate =
+                    await _context.Enrollments.FirstOrDefaultAsync(x =>
+                        x.CourseId == dto.CourseId && x.StudentId == dto.StudentId);
+                enrollmentToUpdate.Marks = dto.Marks;
+                
+                enrollments.Add(enrollmentToUpdate);
+            }
+
             await _context.SaveChangesAsync();
-            return Ok(enrollmentToEdit);
+            return Ok(enrollments);
         }
 
         // Questions and Replies

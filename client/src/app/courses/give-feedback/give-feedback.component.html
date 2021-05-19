@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="center-container">
+    <div class="input-group" *ngFor="let enrollment of enrollmentList">
+      <div class="input-group-text" id="btnGroupAddon">{{ getCourseName(enrollment.courseId) }}</div>
+      <input [(ngModel)]="enrollment.marks" name="{{enrollment.courseId}}" type="number" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon">
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button type="submit" class="btn btn-primary ">Proceed</button>
+    </div>
+  </div>
+</form>

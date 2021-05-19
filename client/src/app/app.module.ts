@@ -28,6 +28,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AdminCourseNewComponent } from './admin/admin-course-new/admin-course-new.component';
 import { AdminStudentNewComponent } from './admin/admin-student-new/admin-student-new.component';
 import { EnrollmentEditComponent } from './courses/enrollment-edit/enrollment-edit.component';
+import { GiveFeedbackComponent } from './courses/give-feedback/give-feedback.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { EnrollmentEditComponent } from './courses/enrollment-edit/enrollment-ed
     AdminCourseNewComponent,
     AdminStudentNewComponent,
     EnrollmentEditComponent,
+    GiveFeedbackComponent,
   ],
   imports: [
     BrowserAnimationsModule,

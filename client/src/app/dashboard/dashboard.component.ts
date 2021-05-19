@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Course} from '../_models/Course';
 import {StudentsService} from '../_services/students.service';
+import {stringify} from 'querystring';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +13,7 @@ export class DashboardComponent implements OnInit {
   courses: Course[];
   studentId: number;
 
-  constructor(private studentService: StudentsService) {
+  constructor(private studentService: StudentsService, private router: Router) {
     this.studentId = JSON.parse(localStorage.getItem('user')).id;
   }
 
@@ -21,6 +23,11 @@ export class DashboardComponent implements OnInit {
         this.courses = next;
       }
     );
+  }
+
+  givefeedback(): void {
+    localStorage.setItem('courses', JSON.stringify(this.courses));
+    this.router.navigateByUrl('/give-feedback');
   }
 
 }
