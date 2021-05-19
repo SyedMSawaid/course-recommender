@@ -1,18 +1,8 @@
-<form>
+<form (ngSubmit)="onSubmit()">
   <div class="center-container">
-    <div class="input-group">
-      <div class="input-group-text" id="btnGroupAddon">Introduction to Python and Computing</div>
-      <input type="number" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon">
-    </div>
-
-    <div class="input-group">
-      <div class="input-group-text" id="btnGroupAddon1">Introduction to Python and Computing</div>
-      <input type="number" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon">
-    </div>
-
-    <div class="input-group">
-      <div class="input-group-text" id="btnGroupAddon2">Introduction to Python and Computing</div>
-      <input type="number" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon">
+    <div class="input-group" *ngFor="let enrollment of enrollmentList">
+      <div class="input-group-text" id="btnGroupAddon">{{ getCourseName(enrollment.courseId) }}</div>
+      <input [(ngModel)]="enrollment.marks" name="{{enrollment.courseId}}" type="number" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon">
     </div>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

@@ -1,5 +1,4 @@
-export interface Enrollment {
-  enrollmentId: number;
+export interface NewEnrollment {
   courseId: string;
   studentId: number;
   marks: number;

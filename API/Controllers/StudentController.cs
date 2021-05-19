@@ -67,6 +67,23 @@ namespace API.Controllers
         }
 
         // Enrollment methods
+        [HttpGet("list-of-courses/{studentId}")]
+        public async Task<List<Course>> ListOfCourses(int studentId)
+        {
+            List<Course> coursesList = await _context.Courses.ToListAsync();
+            List<Course> enrollments =
+                await _context.Enrollments.Where(x => x.StudentId == studentId).Select(p => new Course()
+                {
+                    CourseId = p.CourseId
+                }).ToListAsync();
+            foreach (var enrollment in enrollments)
+            {
+                coursesList.RemoveAll(x => x.CourseId == enrollment.CourseId);
+            }
+            
+            return coursesList;
+        }
+        
         [HttpPost("enroll")]
         public async Task<ActionResult> Enroll(EnrollDto enrollDto)
         {
@@ -76,7 +93,8 @@ namespace API.Controllers
             _context.Enrollments.Add(new Enrollment()
             {
                 StudentId = enrollDto.StudentId,
-                CourseId = enrollDto.CourseId
+                CourseId = enrollDto.CourseId,
+                Marks = enrollDto.Marks
             });
             await _context.SaveChangesAsync();
             return Ok("Student successfully enrolled");

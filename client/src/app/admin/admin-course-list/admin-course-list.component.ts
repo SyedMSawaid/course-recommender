@@ -17,7 +17,6 @@ export class AdminCourseListComponent implements OnInit {
   constructor(private courseService: CoursesService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    console.log(this.courses$);
     this.courses$ = this.courseService.getCourses();
   }
 
@@ -27,13 +26,7 @@ export class AdminCourseListComponent implements OnInit {
   }
 
   sureDelete(course: Course): any {
-    this.courseService.deleteCourse(course).subscribe(
-      next => {
-        console.log(next);
-      }, error => {
-        console.error(error);
-    }
-    );
+    this.courseService.deleteCourse(course);
   }
 
 }

@@ -26,13 +26,7 @@ export class AdminStudentListComponent implements OnInit {
   }
 
   sureDelete(student: Student): any {
-    this.studentService.deleteStudent(student).subscribe(
-      next => {
-        console.log(next);
-      }, error => {
-        console.error(error);
-      }
-    );
+    this.studentService.deleteStudent(student);
   }
 
 }
