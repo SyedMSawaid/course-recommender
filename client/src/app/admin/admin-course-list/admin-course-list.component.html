@@ -26,7 +26,9 @@
   <tbody>
   <tr *ngFor="let course of courses$ | async">
     <th scope="row">{{ course.courseId }}</th>
-    <td>{{ course.courseName }}</td>
+    <a routerLink="/course/{{ course.courseId }}">
+      <td>{{ course.courseName }}</td>
+    </a>
     <td> {{course.credit }} </td>
     <td>
       <button routerLink="/admin/courses/edit/{{ course.courseId }}" type="button" class="btn btn-primary">Edit</button>

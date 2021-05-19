@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'history', component: CourseListComponent },
-  { path: 'course-detail', component: CourseDetailComponent },
+  { path: 'course/:courseId', component: CourseDetailComponent },
   { path: 'enrollment/:enrollmentId', component: EnrollmentEditComponent },
   { path: 'selection', component: CourseSelectionListComponent },
   { path: 'enter-marks', component: CourseSelectionMarksListComponent },
