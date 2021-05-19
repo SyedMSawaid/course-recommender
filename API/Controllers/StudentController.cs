@@ -67,6 +67,7 @@ namespace API.Controllers
         }
 
         // Enrollment methods
+        // Get list of courses where student isn't enrolled
         [HttpGet("list-of-courses/{studentId}")]
         public async Task<List<Course>> ListOfCourses(int studentId)
         {
@@ -76,6 +77,25 @@ namespace API.Controllers
                 {
                     CourseId = p.CourseId
                 }).ToListAsync();
+            foreach (var enrollment in enrollments)
+            {
+                coursesList.RemoveAll(x => x.CourseId == enrollment.CourseId);
+            }
+            
+            return coursesList;
+        }
+        
+        // Courses with no marks
+        [HttpGet("dashboard/{studentId}")]
+        public async Task<List<Course>> Dashboard(int studentId)
+        {
+            List<Course> coursesList = await _context.Courses.ToListAsync();
+            List<Course> enrollments =
+                await _context.Enrollments.Where(x => x.StudentId == studentId && x.Marks != 0).Select(p => new Course()
+                {
+                    CourseId = p.CourseId
+                }).ToListAsync();
+                
             foreach (var enrollment in enrollments)
             {
                 coursesList.RemoveAll(x => x.CourseId == enrollment.CourseId);

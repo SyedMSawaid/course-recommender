@@ -9,20 +9,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">SAD234</th>
-      <td>Introduction to Computing and Technology</td>
-    </tr>
-    <tr>
-      <th scope="row">SAD234</th>
-      <td>Introduction to Computing and Technology</td>
-    </tr>
-    <tr>
-      <th scope="row">SAD234</th>
-      <td>Introduction to Computing and Technology</td>
+    <tr *ngFor="let course of courses">
+      <th scope="row">{{ course.courseId }}</th>
+      <td>{{ course.courseName }}</td>
     </tr>
   </tbody>
 </table>
 
-<button type="button" class="btn btn-primary">View All Courses</button>
+<button type="button" class="btn btn-primary" routerLink="/history">View All Courses</button>
 <button type="button" class="btn btn-primary">Get Course Recommendation</button>

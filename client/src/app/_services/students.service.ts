@@ -53,6 +53,14 @@ export class StudentsService {
     );
   }
 
+  dashboard(id: number): any {
+    return this.http.get<Course[]>(this.baseUrl + `student/dashboard/${id}`).pipe(
+      map(courses => {
+        return courses;
+      })
+    );
+  }
+
   editEnrollment(enrollment: Enrollment): any {
     return this.http.put(this.baseUrl + 'student/enrollment/update', enrollment);
   }
