@@ -1,0 +1,18 @@
+<h1>All Courses</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Course ID</th>
+    <th scope="col">Course Name</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let course of courses | async">
+    <a routerLink="/course/{{ course.courseId }}">
+      <th scope="row">{{ course.courseId }}</th>
+    </a>
+    <td>{{ course.courseName }}</td>
+  </tr>
+  </tbody>
+</table>

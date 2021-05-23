@@ -29,6 +29,10 @@ import { AdminCourseNewComponent } from './admin/admin-course-new/admin-course-n
 import { AdminStudentNewComponent } from './admin/admin-student-new/admin-student-new.component';
 import { EnrollmentEditComponent } from './courses/enrollment-edit/enrollment-edit.component';
 import { GiveFeedbackComponent } from './courses/give-feedback/give-feedback.component';
+import { DiscussionBoardComponent } from './discussion/discussion-board/discussion-board.component';
+import { NewPostComponent } from './discussion/new-post/new-post.component';
+import { NewReplyComponent } from './discussion/new-reply/new-reply.component';
+import { CoursesListComponent } from './courses-list/courses-list.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,10 @@ import { GiveFeedbackComponent } from './courses/give-feedback/give-feedback.com
     AdminStudentNewComponent,
     EnrollmentEditComponent,
     GiveFeedbackComponent,
+    DiscussionBoardComponent,
+    NewPostComponent,
+    NewReplyComponent,
+    CoursesListComponent,
   ],
   imports: [
     BrowserAnimationsModule,

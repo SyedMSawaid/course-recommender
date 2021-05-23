@@ -7,6 +7,8 @@ import {Enrollment} from '../_models/Enrollment';
 import {map} from 'rxjs/operators';
 import {Course} from '../_models/Course';
 import {NewEnrollment} from '../_models/NewEnrollment';
+import {Question} from '../_models/Question';
+import {Reply} from '../_models/Reply';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,8 @@ import {NewEnrollment} from '../_models/NewEnrollment';
 export class StudentsService {
   baseUrl = environment.baseApi;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(this.baseUrl + 'student').pipe(
@@ -25,7 +28,11 @@ export class StudentsService {
   }
 
   getStudent(id: number): Observable<Student> {
-    return this.http.get<Student>(this.baseUrl + `student/${id}`);
+    return this.http.get<Student>(this.baseUrl + `student/${id}`).pipe(
+      map(student => {
+        return student;
+      })
+    );
   }
 
   updateStudent(student: Student): any {
@@ -87,5 +94,27 @@ export class StudentsService {
         return next;
       }
     );
+  }
+
+  // Discussion Boards
+  getAllQuestions(courseId: string): any {
+    return this.http.get(this.baseUrl + `course/question/${courseId}`);
+  }
+
+  getAllQuestionsOfStudent(): any {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return this.http.get(this.baseUrl + `student/question/${user.id}`);
+  }
+
+  getRepliesOfQuestion(questionId: number): any {
+    return this.http.get(this.baseUrl + `course/question/replies/${questionId}`);
+  }
+
+  newQuestion(question: Question): any {
+    return this.http.post(this.baseUrl + `course/question/new`, question);
+  }
+
+  newReply(reply: Reply): any {
+    return this.http.post(this.baseUrl + `course/question/reply/new`, reply);
   }
 }

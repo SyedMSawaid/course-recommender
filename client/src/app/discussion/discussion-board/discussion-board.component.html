@@ -1,0 +1,18 @@
+<h1>{{ courseId }}</h1>
+
+
+<button type="button" class="btn btn-primary" (click)="newpost()">Ask a New Question</button>
+
+<div class="media" *ngFor="let question of questions" style="margin-bottom: 20px; border: 2px black solid">
+  <div class="media-body">
+    <h5 class="mt-0">Student ID: {{ question.studentId }}</h5>
+    {{ question.query }}
+
+    <br>
+    <button class="btn btn-sm btn-primary" (click)="newreply(question)">Reply</button>
+
+      <div class="media-body space" *ngFor="let reply of getReplies(question.questionId)" style="border-top: 2px black solid">
+        <strong>{{ reply.studentId }}</strong>: {{ reply.answer }}
+      </div>
+  </div>
+</div>

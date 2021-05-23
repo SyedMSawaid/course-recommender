@@ -13,13 +13,10 @@ namespace CourseRecommendationSystemML.ConsoleApp
         private static string TRAIN_DATA_FILEPATH = @"D:\STUDENT DATA\EnrollmentSeedData.csv";
         private static string MODEL_FILE = ConsumeModel.MLNetModelPath;
 
-        // Create MLContext to be shared across the model creation workflow objects 
-        // Set a random seed for repeatable/deterministic results across multiple trainings.
         private static MLContext mlContext = new MLContext(seed: 1);
 
         public static void CreateModel()
         {
-            // Load Data
             IDataView trainingDataView = mlContext.Data.LoadFromTextFile<ModelInput>(
                                             path: TRAIN_DATA_FILEPATH,
                                             hasHeader: true,
@@ -27,25 +24,21 @@ namespace CourseRecommendationSystemML.ConsoleApp
                                             allowQuoting: true,
                                             allowSparse: false);
 
-            // Build training pipeline
+
             IEstimator<ITransformer> trainingPipeline = BuildTrainingPipeline(mlContext);
 
-            // Train Model
             ITransformer mlModel = TrainModel(mlContext, trainingDataView, trainingPipeline);
 
-            // Evaluate quality of Model
             Evaluate(mlContext, trainingDataView, trainingPipeline);
 
-            // Save model
             SaveModel(mlContext, mlModel, MODEL_FILE, trainingDataView.Schema);
         }
 
         public static IEstimator<ITransformer> BuildTrainingPipeline(MLContext mlContext)
         {
-            // Data process configuration with pipeline data transformations 
             var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("StudentId", "StudentId")
                                       .Append(mlContext.Transforms.Conversion.MapValueToKey("CourseId", "CourseId"));
-            // Set the training algorithm 
+
             var trainer = mlContext.Recommendation().Trainers.MatrixFactorization(labelColumnName: @"Marks", matrixColumnIndexColumnName: @"StudentId", matrixRowIndexColumnName: @"CourseId");
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);
@@ -65,14 +58,11 @@ namespace CourseRecommendationSystemML.ConsoleApp
 
         private static void Evaluate(MLContext mlContext, IDataView trainingDataView, IEstimator<ITransformer> trainingPipeline)
         {
-            // Cross-Validate with single dataset (since we don't have two datasets, one for training and for evaluate)
-            // in order to evaluate and get the model's accuracy metrics
             Console.WriteLine("=============== Cross-validating to get model's accuracy metrics ===============");
         }
 
         private static void SaveModel(MLContext mlContext, ITransformer mlModel, string modelRelativePath, DataViewSchema modelInputSchema)
         {
-            // Save/persist the trained model to a .ZIP file
             Console.WriteLine($"=============== Saving the model  ===============");
             mlContext.Model.Save(mlModel, modelInputSchema, GetAbsolutePath(modelRelativePath));
             Console.WriteLine("The model is saved to {0}", GetAbsolutePath(modelRelativePath));

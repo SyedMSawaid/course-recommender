@@ -1,0 +1,7 @@
+<form (ngSubmit)="submit()">
+
+  <h6>Question: {{question}}</h6>
+  <textarea [(ngModel)]="reply.answer" name="answer" style="width: 500px"></textarea>
+
+  <button type="submit">Submit</button>
+</form>

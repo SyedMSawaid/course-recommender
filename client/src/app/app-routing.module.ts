@@ -18,6 +18,10 @@ import {AdminStudentEditComponent} from './admin/admin-student-edit/admin-studen
 import {AdminStudentNewComponent} from './admin/admin-student-new/admin-student-new.component';
 import {EnrollmentEditComponent} from './courses/enrollment-edit/enrollment-edit.component';
 import {GiveFeedbackComponent} from './courses/give-feedback/give-feedback.component';
+import {DiscussionBoardComponent} from './discussion/discussion-board/discussion-board.component';
+import {NewPostComponent} from './discussion/new-post/new-post.component';
+import {NewReplyComponent} from './discussion/new-reply/new-reply.component';
+import {CoursesListComponent} from './courses-list/courses-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,6 +35,10 @@ const routes: Routes = [
   { path: 'enter-marks', component: CourseSelectionMarksListComponent },
   { path: 'give-feedback', component: GiveFeedbackComponent },
   { path: 'recommended', component: RecommendedComponent },
+  { path: 'discussion/:courseId', component: DiscussionBoardComponent },
+  { path: 'new-post', component: NewPostComponent },
+  { path: 'new-reply', component: NewReplyComponent },
+  { path: 'all-courses', component: CoursesListComponent },
   {
     path: 'admin',
     children: [

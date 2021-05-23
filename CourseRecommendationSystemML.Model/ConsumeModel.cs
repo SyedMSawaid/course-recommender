@@ -14,8 +14,6 @@ namespace CourseRecommendationSystemML.Model
 
         public static string MLNetModelPath = Path.GetFullPath("MLModel.zip");
 
-        // For more info on consuming ML.NET models, visit https://aka.ms/mlnet-consume
-        // Method for consuming model in your app
         public static ModelOutput Predict(ModelInput input)
         {
             ModelOutput result = PredictionEngine.Value.Predict(input);
@@ -24,10 +22,8 @@ namespace CourseRecommendationSystemML.Model
 
         public static PredictionEngine<ModelInput, ModelOutput> CreatePredictionEngine()
         {
-            // Create new MLContext
             MLContext mlContext = new MLContext();
 
-            // Load model & create prediction engine
             ITransformer mlModel = mlContext.Model.Load(MLNetModelPath, out var modelInputSchema);
             var predEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
 
