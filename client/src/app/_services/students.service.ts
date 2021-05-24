@@ -9,6 +9,7 @@ import {Course} from '../_models/Course';
 import {NewEnrollment} from '../_models/NewEnrollment';
 import {Question} from '../_models/Question';
 import {Reply} from '../_models/Reply';
+import {RecommendationDto} from '../_models/RecommendationDto';
 
 @Injectable({
   providedIn: 'root'
@@ -116,5 +117,9 @@ export class StudentsService {
 
   newReply(reply: Reply): any {
     return this.http.post(this.baseUrl + `course/question/reply/new`, reply);
+  }
+
+  getRecommendation(dto: RecommendationDto): any {
+    return this.http.post(this.baseUrl + `student/getrecommendation`, dto);
   }
 }

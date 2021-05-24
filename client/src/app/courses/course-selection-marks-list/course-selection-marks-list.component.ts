@@ -3,6 +3,8 @@ import {StudentsService} from '../../_services/students.service';
 import {Course} from '../../_models/Course';
 import {NewEnrollment} from '../../_models/NewEnrollment';
 import {Router} from '@angular/router';
+import {CoursesService} from '../../_services/courses.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-course-selection-marks-list',
@@ -15,11 +17,12 @@ export class CourseSelectionMarksListComponent implements OnInit {
   enrollmentList: NewEnrollment[] = [];
   x: any;
 
-  constructor(private studentService: StudentsService, private router: Router) { }
+  constructor(private studentService: StudentsService, private coursesService: CoursesService, private router: Router) { }
 
   ngOnInit(): void {
     this.selectedCourses = JSON.parse(localStorage.getItem('courses'));
     this.studentId = JSON.parse(localStorage.getItem('user')).id;
+    console.log(this.selectedCourses);
     for (const course of this.selectedCourses) {
       const enrollment: NewEnrollment = {
         courseId: course.courseId,

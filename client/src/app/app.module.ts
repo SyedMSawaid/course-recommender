@@ -33,6 +33,7 @@ import { DiscussionBoardComponent } from './discussion/discussion-board/discussi
 import { NewPostComponent } from './discussion/new-post/new-post.component';
 import { NewReplyComponent } from './discussion/new-reply/new-reply.component';
 import { CoursesListComponent } from './courses-list/courses-list.component';
+import { SelectCoursesRecommendationComponent } from './courses/select-courses-recommendation/select-courses-recommendation.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { CoursesListComponent } from './courses-list/courses-list.component';
     NewPostComponent,
     NewReplyComponent,
     CoursesListComponent,
+    SelectCoursesRecommendationComponent,
   ],
   imports: [
     BrowserAnimationsModule,

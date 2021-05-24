@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CourseRecommendationSystemML.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
@@ -170,6 +171,27 @@ namespace API.Controllers
         public async Task<ActionResult> Replies(int id)
         {
             return Ok(await _context.Replies.Where(x => x.StudentId == id).ToListAsync());
+        }
+
+        [HttpPost("getrecommendation")]
+        public async Task<List<CourseMarksDto>> GetRecommendation(CoursesListDto coursesListDto)
+        {
+            List<CourseMarksDto> CoursesList = new List<CourseMarksDto>();
+            foreach (var course in coursesListDto.CoursesList)
+            {
+                ModelInput modelInput = new ModelInput()
+                {
+                    StudentId = coursesListDto.StudentId,
+                    CourseId = course
+                };
+                CoursesList.Add(new CourseMarksDto(){
+                    CourseId = course,
+                    Marks = ConsumeModel.Predict(modelInput).Score
+                });
+            }
+
+            Console.WriteLine(CoursesList);
+            return CoursesList;
         }
     }
 }

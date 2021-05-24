@@ -22,6 +22,7 @@ import {DiscussionBoardComponent} from './discussion/discussion-board/discussion
 import {NewPostComponent} from './discussion/new-post/new-post.component';
 import {NewReplyComponent} from './discussion/new-reply/new-reply.component';
 import {CoursesListComponent} from './courses-list/courses-list.component';
+import {SelectCoursesRecommendationComponent} from './courses/select-courses-recommendation/select-courses-recommendation.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'enter-marks', component: CourseSelectionMarksListComponent },
   { path: 'give-feedback', component: GiveFeedbackComponent },
   { path: 'recommended', component: RecommendedComponent },
+  { path: 'select-courses', component: SelectCoursesRecommendationComponent },
   { path: 'discussion/:courseId', component: DiscussionBoardComponent },
   { path: 'new-post', component: NewPostComponent },
   { path: 'new-reply', component: NewReplyComponent },
