@@ -5,33 +5,40 @@ using System.Linq;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using CourseRecommendationSystemML.Model;
+using System.Data.Common;
+using Npgsql;
 
 namespace CourseRecommendationSystemML.ConsoleApp
 {
     public static class ModelBuilder
     {
-        private static string TRAIN_DATA_FILEPATH = @"D:\STUDENT DATA\EnrollmentSeedData.csv";
+        private static string CONNECTION_STRING = @"Server=localhost; Port=5432; Database=apidatabase; Username=postgres; Password=admin";
         private static string MODEL_FILE = ConsumeModel.MLNetModelPath;
 
         private static MLContext mlContext = new MLContext(seed: 1);
 
         public static void CreateModel()
         {
-            IDataView trainingDataView = mlContext.Data.LoadFromTextFile<ModelInput>(
-                                            path: TRAIN_DATA_FILEPATH,
-                                            hasHeader: true,
-                                            separatorChar: ',',
-                                            allowQuoting: true,
-                                            allowSparse: false);
 
+            DatabaseLoader loader = mlContext.Data.CreateDatabaseLoader<ModelInput>();
+
+            string sqlCommand = "SELECT \"StudentId\", \"CourseId\", \"Marks\" FROM public.\"Enrollments\"";
+
+            var connection = new NpgsqlConnection(CONNECTION_STRING);
+
+            var factor = DbProviderFactories.GetFactory(connection);
+
+            DatabaseSource dbSource = new DatabaseSource(factor, CONNECTION_STRING, sqlCommand);
+
+            IDataView data = loader.Load(dbSource);
 
             IEstimator<ITransformer> trainingPipeline = BuildTrainingPipeline(mlContext);
 
-            ITransformer mlModel = TrainModel(mlContext, trainingDataView, trainingPipeline);
+            ITransformer mlModel = TrainModel(mlContext, data, trainingPipeline);
 
-            Evaluate(mlContext, trainingDataView, trainingPipeline);
+            Evaluate(mlContext, data, trainingPipeline);
 
-            SaveModel(mlContext, mlModel, MODEL_FILE, trainingDataView.Schema);
+            SaveModel(mlContext, mlModel, MODEL_FILE, data.Schema);
         }
 
         public static IEstimator<ITransformer> BuildTrainingPipeline(MLContext mlContext)
