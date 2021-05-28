@@ -36,6 +36,8 @@ import { CoursesListComponent } from './courses-list/courses-list.component';
 import { SelectCoursesRecommendationComponent } from './courses/select-courses-recommendation/select-courses-recommendation.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     SelectCoursesRecommendationComponent,
     ProfileComponent,
     ChangePasswordComponent,
+    ResetPasswordComponent,
+    ForgetPasswordComponent,
   ],
   imports: [
     BrowserAnimationsModule,

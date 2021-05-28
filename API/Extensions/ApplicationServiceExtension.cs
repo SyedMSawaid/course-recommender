@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Entity;
 
 namespace API.Extensions
 {
@@ -24,6 +25,8 @@ namespace API.Extensions
             services.AddDbContext<DataContext>(options => {
                 options.UseNpgsql(config.GetConnectionString("DefaultConnection"));
             });
+            
+            services.Configure<SMTPConfigModel>(config.GetSection("SMTPConfig"));
 
             return services;
         }

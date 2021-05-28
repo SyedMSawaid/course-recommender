@@ -7,10 +7,15 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using API.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace API.Controllers
 {
@@ -20,7 +25,8 @@ namespace API.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService)
+        public AccountController(UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager, ITokenService tokenService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -96,6 +102,38 @@ namespace API.Controllers
         private async Task<bool> UserExists(string username)
         {
             return await _userManager.Users.AnyAsync(x => x.UserName == username.ToLower());
+        }
+
+        [HttpPost("ForgetPassword")]
+        public async Task<ActionResult> ForgetPassword(ForgetPasswordDto forgetPasswordDto)
+        {
+            var user = await _userManager.FindByEmailAsync(forgetPasswordDto.Email);
+            if (user == null) return NotFound();
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var encodedToken = Encoding.UTF8.GetBytes(token);
+            var validToken = WebEncoders.Base64UrlEncode(encodedToken);
+
+            string url = $"http://localhost:4200/ResetPassword?email={forgetPasswordDto.Email}&token={validToken}";
+            
+            var client = new SmtpClient("smtp.mailtrap.io", 2525)
+            {
+                Credentials = new NetworkCredential("e9eb97c23bc1f7", "8886e8969d3dd5"),
+                EnableSsl = true
+            };
+            client.Send("from@example.com", forgetPasswordDto.Email, "Password Reset", url);
+
+            return Ok(validToken);
+        }
+
+        [HttpPost("ResetPassword")]
+        public async Task<ActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+            var result = await _userManager.ResetPasswordAsync(user, Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(resetPasswordDto.Token)), resetPasswordDto.NewPassword);
+
+            return Ok(result.Errors);
         }
     }
 }

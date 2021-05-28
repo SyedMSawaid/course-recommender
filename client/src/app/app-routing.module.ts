@@ -25,6 +25,8 @@ import {CoursesListComponent} from './courses-list/courses-list.component';
 import {SelectCoursesRecommendationComponent} from './courses/select-courses-recommendation/select-courses-recommendation.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
+import {ResetPasswordComponent} from './reset-password/reset-password.component';
+import {ForgetPasswordComponent} from './forget-password/forget-password.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,6 +46,8 @@ const routes: Routes = [
   { path: 'new-reply', component: NewReplyComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/change-password', component: ChangePasswordComponent },
+  { path: 'ResetPassword', component: ResetPasswordComponent },
+  { path: 'ForgetPassword', component: ForgetPasswordComponent },
   { path: 'all-courses', component: CoursesListComponent },
   {
     path: 'admin',

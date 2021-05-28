@@ -13,6 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Entity;
+using API.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace API
 {
@@ -32,6 +35,10 @@ namespace API
             services.AddApplicationServices(Configuration);
             services.AddIdentityServices(Configuration);
             services.AddCors();
+            
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<DbContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

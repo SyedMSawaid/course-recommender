@@ -65,4 +65,12 @@ export class AccountService {
       })
     );
   }
+
+  resetPassword(model: any): any {
+    return this.http.post(this.baseUrl + 'account/resetpassword', model);
+  }
+
+  forgetPassword(model: any): any {
+    return this.http.post(this.baseUrl + 'account/forgetpassword', model);
+  }
 }
