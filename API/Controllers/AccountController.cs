@@ -72,6 +72,27 @@ namespace API.Controllers
             };
         }
 
+        [HttpPut("change-password")]
+        public async Task<ActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            AppUser userToChange = await _userManager.Users.SingleOrDefaultAsync(x => x.Id == changePasswordDto.UserId);
+            var succeeded = await _userManager.ChangePasswordAsync(userToChange, changePasswordDto.OldPassword,
+                changePasswordDto.NewPassword);
+
+            if (succeeded.Succeeded)
+            {
+                AppUser user = await _userManager.Users.SingleOrDefaultAsync(x => x.Id == changePasswordDto.UserId);
+                return Ok(new UserDto
+                {
+                    Id = user.Id,
+                    Username = user.UserName,
+                    Token = await _tokenService.CreateToken(user)
+                });
+            }
+
+            return Unauthorized();
+        }
+
         private async Task<bool> UserExists(string username)
         {
             return await _userManager.Users.AnyAsync(x => x.UserName == username.ToLower());

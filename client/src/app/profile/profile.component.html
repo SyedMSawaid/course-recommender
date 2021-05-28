@@ -1,0 +1,6 @@
+<p>Name: {{ (student | async).fullName }}</p>
+<p>Email: {{ (student | async).email }}</p>
+<p>ID: {{ (student | async).id }}</p>
+
+<button class="btn btn-primary" routerLink="change-password">Change Password</button><br>
+<button class="btn btn-primary" style="margin-top: 10px" (click)="logout()">Logout</button>

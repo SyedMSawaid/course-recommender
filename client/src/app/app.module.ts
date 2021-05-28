@@ -34,6 +34,8 @@ import { NewPostComponent } from './discussion/new-post/new-post.component';
 import { NewReplyComponent } from './discussion/new-reply/new-reply.component';
 import { CoursesListComponent } from './courses-list/courses-list.component';
 import { SelectCoursesRecommendationComponent } from './courses/select-courses-recommendation/select-courses-recommendation.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { SelectCoursesRecommendationComponent } from './courses/select-courses-r
     NewReplyComponent,
     CoursesListComponent,
     SelectCoursesRecommendationComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserAnimationsModule,

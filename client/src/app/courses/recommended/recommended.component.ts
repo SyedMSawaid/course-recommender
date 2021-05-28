@@ -38,8 +38,8 @@ export class RecommendedComponent implements OnInit {singleModel = '1';
   }
 
   optcourse(courseId: string): any {
-    const course: Course[] = [
-      { courseId: courseId, courseName: this.getCourseName(courseId) },
+    const course = [
+      { courseId, courseName: this.getCourseName(courseId) },
     ];
     localStorage.setItem('courses', JSON.stringify(course));
     this.router.navigateByUrl('/enter-marks');

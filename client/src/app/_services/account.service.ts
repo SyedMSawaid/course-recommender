@@ -47,4 +47,18 @@ export class AccountService {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
   }
+
+  changePassword(oldPassword: string, newPassword: string): any {
+    const userId = JSON.parse(localStorage.getItem('user')).id;
+    return this.http.put(this.baseUrl + 'account/change-password', {userId, oldPassword, newPassword}).pipe(
+      map((response: User)  => {
+        const user = response;
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.setCurrentUser(user);
+          console.log(user);
+        }
+      })
+    );
+  }
 }

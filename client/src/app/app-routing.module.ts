@@ -23,6 +23,8 @@ import {NewPostComponent} from './discussion/new-post/new-post.component';
 import {NewReplyComponent} from './discussion/new-reply/new-reply.component';
 import {CoursesListComponent} from './courses-list/courses-list.component';
 import {SelectCoursesRecommendationComponent} from './courses/select-courses-recommendation/select-courses-recommendation.component';
+import {ProfileComponent} from './profile/profile.component';
+import {ChangePasswordComponent} from './change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -40,6 +42,8 @@ const routes: Routes = [
   { path: 'discussion/:courseId', component: DiscussionBoardComponent },
   { path: 'new-post', component: NewPostComponent },
   { path: 'new-reply', component: NewReplyComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/change-password', component: ChangePasswordComponent },
   { path: 'all-courses', component: CoursesListComponent },
   {
     path: 'admin',
