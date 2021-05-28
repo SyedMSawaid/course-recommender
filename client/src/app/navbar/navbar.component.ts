@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AccountService} from '../_services/account.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,14 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  accountService: AccountService;
 
-  isCollapsed = true;
-  isLogin = false;
-
-
-  constructor() { }
+  constructor(accountService: AccountService) {
+    this.accountService = accountService;
+  }
 
   ngOnInit(): void {
   }
-
 }
