@@ -46,8 +46,8 @@ const routes: Routes = [
   { path: 'new-reply', component: NewReplyComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/change-password', component: ChangePasswordComponent },
-  { path: 'ResetPassword', component: ResetPasswordComponent },
-  { path: 'ForgetPassword', component: ForgetPasswordComponent },
+  { path: 'resetpassword', component: ResetPasswordComponent },
+  { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'all-courses', component: CoursesListComponent },
   {
     path: 'admin',

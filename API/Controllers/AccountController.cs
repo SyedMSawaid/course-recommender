@@ -115,7 +115,7 @@ namespace API.Controllers
             var encodedToken = Encoding.UTF8.GetBytes(token);
             var validToken = WebEncoders.Base64UrlEncode(encodedToken);
 
-            string url = $"http://localhost:4200/ResetPassword?email={forgetPasswordDto.Email}&token={validToken}";
+            string url = $"http://localhost:4200/resetpassword?email={forgetPasswordDto.Email}&token={validToken}";
             
             var client = new SmtpClient("smtp.mailtrap.io", 2525)
             {
