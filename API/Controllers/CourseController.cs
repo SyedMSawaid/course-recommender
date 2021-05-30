@@ -87,7 +87,10 @@ namespace API.Controllers
         [HttpPost("question/new")]
         public async Task<ActionResult> NewQuestion(PostQuestionDto postQuestionDto)
         {
-
+            if (await _context.Courses.FirstOrDefaultAsync(x => x.CourseId == postQuestionDto.CourseId) == null)
+                return NotFound("Course Doesn't Exist");
+            if (await _context.Users.FirstOrDefaultAsync(x => x.Id == postQuestionDto.StudentId) == null)
+                return NotFound("Student Doesn't Exist");
             Question newQuestion = new Question()
             {
                 Query = postQuestionDto.Query,

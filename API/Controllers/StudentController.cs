@@ -70,8 +70,10 @@ namespace API.Controllers
         // Enrollment methods
         // Get list of courses where student isn't enrolled
         [HttpGet("list-of-courses/{studentId}")]
-        public async Task<List<Course>> ListOfCourses(int studentId)
+        public async Task<ActionResult<List<Course>>> ListOfCourses(int studentId)
         {
+            if (await _context.Users.FirstOrDefaultAsync(x => x.Id == studentId) == null)
+                return NotFound("Student doesn't exist");
             List<Course> coursesList = await _context.Courses.ToListAsync();
             List<Course> enrollments =
                 await _context.Enrollments.Where(x => x.StudentId == studentId).Select(p => new Course()
@@ -137,6 +139,7 @@ namespace API.Controllers
         public async Task<ActionResult> DeleteEnrollment(int id)
         {
             Enrollment enrollmentToDelete = await _context.Enrollments.FindAsync(id);
+            if (enrollmentToDelete == null) return NotFound("Enrollment doesn't exist");
             _context.Enrollments.Remove(enrollmentToDelete);
             await _context.SaveChangesAsync();
             return Ok(enrollmentToDelete);
@@ -151,6 +154,7 @@ namespace API.Controllers
                 Enrollment enrollmentToUpdate =
                     await _context.Enrollments.FirstOrDefaultAsync(x =>
                         x.CourseId == dto.CourseId && x.StudentId == dto.StudentId);
+                
                 enrollmentToUpdate.Marks = dto.Marks;
                 
                 enrollments.Add(enrollmentToUpdate);
@@ -174,11 +178,16 @@ namespace API.Controllers
         }
 
         [HttpPost("getrecommendation")]
-        public async Task<List<CourseMarksDto>> GetRecommendation(CoursesListDto coursesListDto)
+        public async Task<ActionResult<List<CourseMarksDto>>> GetRecommendation(CoursesListDto coursesListDto)
         {
+            if ((await _context.Users.FirstOrDefaultAsync(x => x.Id == coursesListDto.StudentId)) == null)
+                return NotFound("Student Doesn't Exist");
+            
             List<CourseMarksDto> CoursesList = new List<CourseMarksDto>();
             foreach (var course in coursesListDto.CoursesList)
             {
+                if (await _context.Courses.FirstOrDefaultAsync(x => x.CourseId == course) == null)
+                    return NotFound("Course Doesn't Exist");
                 ModelInput modelInput = new ModelInput()
                 {
                     StudentId = coursesListDto.StudentId,

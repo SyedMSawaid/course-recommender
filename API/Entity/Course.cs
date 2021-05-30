@@ -10,7 +10,9 @@ namespace API.Entity
     {
         [Key]
         public string CourseId { get; set; }
+        [Required, MinLength(8)]
         public string CourseName { get; set; }
+        [Required, MinLength(8)]
         public string CourseDescription { get; set; }
         public int Credit { get; set; }
 

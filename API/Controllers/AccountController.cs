@@ -68,14 +68,14 @@ namespace API.Controllers
             if (user == null) return Unauthorized("Invalid Username");
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
-            if (!result.Succeeded) return Unauthorized();
+            if (!result.Succeeded) return Unauthorized("Invalid username or Password");
             
-            return new UserDto
+            return Ok(new UserDto
             {
                 Id = user.Id,
                 Username = user.UserName,
                 Token = await _tokenService.CreateToken(user)
-            };
+            });
         }
 
         [HttpPut("change-password")]
@@ -96,7 +96,7 @@ namespace API.Controllers
                 });
             }
 
-            return Unauthorized();
+            return Unauthorized(succeeded.Errors);
         }
 
         private async Task<bool> UserExists(string username)
@@ -108,7 +108,7 @@ namespace API.Controllers
         public async Task<ActionResult> ForgetPassword(ForgetPasswordDto forgetPasswordDto)
         {
             var user = await _userManager.FindByEmailAsync(forgetPasswordDto.Email);
-            if (user == null) return NotFound();
+            if (user == null) return NotFound("No account is associated with this email.");
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
@@ -133,7 +133,8 @@ namespace API.Controllers
             AppUser user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
             var result = await _userManager.ResetPasswordAsync(user, Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(resetPasswordDto.Token)), resetPasswordDto.NewPassword);
 
-            return Ok(result.Errors);
+            if (!result.Succeeded) return Unauthorized(result.Errors);
+                return Ok("Password successfully updated");
         }
     }
 }
