@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StudentsService} from '../../_services/students.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-reply',
@@ -12,7 +13,7 @@ export class NewReplyComponent implements OnInit {
   courseId: string;
   reply: any = {};
 
-  constructor(private studentService: StudentsService, private router: Router) { }
+  constructor(private studentService: StudentsService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.reply.studentId = JSON.parse(localStorage.getItem('data')).user;
@@ -25,9 +26,12 @@ export class NewReplyComponent implements OnInit {
     this.studentService.newReply(this.reply).subscribe(
       next => {
         console.log(next);
+        this.router.navigateByUrl('/discussion/' + this.courseId);
+        this.toastr.success('New Reply Added');
+      }, error => {
+        console.log(error);
       }
     );
-    this.router.navigateByUrl('/discussion/' + this.courseId);
   }
 
 }

@@ -27,50 +27,58 @@ import {ProfileComponent} from './profile/profile.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {ForgetPasswordComponent} from './forget-password/forget-password.component';
+import {AuthGuard} from './_guard/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  {
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'history', component: CourseListComponent },
+      { path: 'course/:courseId', component: CourseDetailComponent },
+      { path: 'enrollment/:enrollmentId', component: EnrollmentEditComponent },
+      { path: 'selection', component: CourseSelectionListComponent },
+      { path: 'enter-marks', component: CourseSelectionMarksListComponent },
+      { path: 'give-feedback', component: GiveFeedbackComponent },
+      { path: 'recommended', component: RecommendedComponent },
+      { path: 'select-courses', component: SelectCoursesRecommendationComponent },
+      { path: 'discussion/:courseId', component: DiscussionBoardComponent },
+      { path: 'new-post', component: NewPostComponent },
+      { path: 'new-reply', component: NewReplyComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'profile/change-password', component: ChangePasswordComponent },
+      { path: 'all-courses', component: CoursesListComponent },
+      {
+        path: 'admin',
+        children: [
+          { path: 'dashboard', component: AdminDashboardComponent },
+          {
+            path: 'courses',
+            children: [
+              { path: '', component: AdminCourseListComponent },
+              { path: 'edit/:courseId', component: AdminCourseEditComponent },
+              { path: 'new', component: AdminCourseNewComponent },
+            ]
+          },
+          {
+            path: 'students',
+            children: [
+              { path: '', component: AdminStudentListComponent },
+              { path: 'edit/:studentId', component: AdminStudentEditComponent },
+              { path: 'new', component: AdminStudentNewComponent }
+            ]
+          },
+        ]
+      }
+    ]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'history', component: CourseListComponent },
-  { path: 'course/:courseId', component: CourseDetailComponent },
-  { path: 'enrollment/:enrollmentId', component: EnrollmentEditComponent },
-  { path: 'selection', component: CourseSelectionListComponent },
-  { path: 'enter-marks', component: CourseSelectionMarksListComponent },
-  { path: 'give-feedback', component: GiveFeedbackComponent },
-  { path: 'recommended', component: RecommendedComponent },
-  { path: 'select-courses', component: SelectCoursesRecommendationComponent },
-  { path: 'discussion/:courseId', component: DiscussionBoardComponent },
-  { path: 'new-post', component: NewPostComponent },
-  { path: 'new-reply', component: NewReplyComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'profile/change-password', component: ChangePasswordComponent },
   { path: 'resetpassword', component: ResetPasswordComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
-  { path: 'all-courses', component: CoursesListComponent },
-  {
-    path: 'admin',
-    children: [
-      { path: 'dashboard', component: AdminDashboardComponent },
-      {
-        path: 'courses',
-        children: [
-          { path: '', component: AdminCourseListComponent },
-          { path: 'edit/:courseId', component: AdminCourseEditComponent },
-          { path: 'new', component: AdminCourseNewComponent },
-        ]
-      },
-      {
-        path: 'students',
-        children: [
-          { path: '', component: AdminStudentListComponent },
-          { path: 'edit/:studentId', component: AdminStudentEditComponent },
-          { path: 'new', component: AdminStudentNewComponent }
-        ]
-      },
-    ]
-  }
 ];
 
 @NgModule({

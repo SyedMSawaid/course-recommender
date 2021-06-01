@@ -12,9 +12,10 @@ export class AccountService {
   baseUrl = environment.baseApi;
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
-  isLoggedIn = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.currentUserSource.next(null);
+  }
 
   login(model: any): any {
     return this.http.post(this.baseUrl + 'account/login', model).pipe(
@@ -22,8 +23,7 @@ export class AccountService {
         const user = response;
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
-          this.setCurrentUser(user);
-          this.isLoggedIn = true;
+          this.currentUserSource.next(user);
         }
       })
     );
@@ -34,22 +34,16 @@ export class AccountService {
       map((user: User) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
-          this.setCurrentUser(user);
-          this.isLoggedIn = true;
+          this.currentUserSource.next(user);
         }
         return user;
       })
     );
   }
 
-  setCurrentUser(user: User): void {
-    this.currentUserSource.next(user);
-  }
-
   logout(): void {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
-    this.isLoggedIn = false;
   }
 
   changePassword(oldPassword: string, newPassword: string): any {
@@ -59,7 +53,7 @@ export class AccountService {
         const user = response;
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
-          this.setCurrentUser(user);
+          this.currentUserSource.next(user);
           console.log(user);
         }
       })

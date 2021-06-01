@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AccountService} from '../_services/account.service';
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  accountService: AccountService;
+  user: any;
+  loginModel: any = {};
 
-  constructor(accountService: AccountService) {
-    this.accountService = accountService;
+  constructor(private accountService: AccountService) {
+    this.user = this.accountService.currentUser$;
   }
 
+
   ngOnInit(): void {
+    this.user.subscribe(
+      next => {
+        this.loginModel = next;
+      }
+    );
   }
 }

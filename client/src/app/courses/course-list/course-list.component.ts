@@ -6,6 +6,7 @@ import {Course} from '../../_models/Course';
 import {CoursesService} from '../../_services/courses.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {Student} from '../../_models/Student';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-course-list',
@@ -18,7 +19,8 @@ export class CourseListComponent implements OnInit {
   modalRef: BsModalRef;
   enrollmentToDelete: Enrollment;
 
-  constructor(private studentService: StudentsService, private courseService: CoursesService, private modalService: BsModalService) { }
+  constructor(private studentService: StudentsService, private courseService: CoursesService, private modalService: BsModalService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.enrollments$ = this.studentService.showEnrollments();
@@ -42,6 +44,9 @@ export class CourseListComponent implements OnInit {
     this.studentService.deleteEnrollment(enrollment.enrollmentId).subscribe(
       next => {
         console.log(next);
+        this.modalRef.hide();
+        window.location.reload();
+        this.toastr.success('Enrollment Successfully Deleted');
       }, error => {
         console.error(error);
       }

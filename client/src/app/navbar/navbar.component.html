@@ -1,4 +1,5 @@
 <nav class="navbar navbar-light bg-light justify-content-center">
-  <a class="navbar-brand" routerLink="/" *ngIf="!(accountService.isLoggedIn)">Course Recommendation System</a>
-  <a class="navbar-brand" routerLink="/dashboard" *ngIf="(accountService.isLoggedIn)">Course Recommendation System</a>
+  <a class="navbar-brand" routerLink="/" *ngIf="loginModel === null">Course Recommendation System</a>
+  <a class="navbar-brand" routerLink="/admin/dashboard" *ngIf="(loginModel !== null && loginModel.username === 'admin')">Course Recommendation System</a>
+  <a class="navbar-brand" routerLink="/dashboard" *ngIf="(loginModel !== null && loginModel.username !== 'admin')">Course Recommendation System</a>
 </nav>

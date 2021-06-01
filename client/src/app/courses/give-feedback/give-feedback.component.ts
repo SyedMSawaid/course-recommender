@@ -3,6 +3,7 @@ import {Course} from '../../_models/Course';
 import {NewEnrollment} from '../../_models/NewEnrollment';
 import {StudentsService} from '../../_services/students.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-give-feedback',
@@ -15,7 +16,7 @@ export class GiveFeedbackComponent implements OnInit {
   enrollmentList: NewEnrollment[] = [];
   x: any;
 
-  constructor(private studentService: StudentsService, private router: Router) { }
+  constructor(private studentService: StudentsService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.selectedCourses = JSON.parse(localStorage.getItem('courses'));
@@ -36,9 +37,14 @@ export class GiveFeedbackComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.enrollmentList);
-    this.studentService.updateEnrollment(this.enrollmentList);
-    console.log('Sending Enrollment!!!');
-    localStorage.removeItem('courses');
-    this.router.navigateByUrl('dashboard');
+    this.studentService.updateEnrollment(this.enrollmentList).subscribe(
+      next => {
+        localStorage.removeItem('courses');
+        this.router.navigateByUrl('dashboard');
+        this.toastr.success('Successfully Updated');
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 }

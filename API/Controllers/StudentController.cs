@@ -7,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Interfaces;
 using CourseRecommendationSystemML.Model;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
@@ -15,46 +17,84 @@ namespace API.Controllers
     public class StudentController : BaseApiController
     {
         private readonly DataContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly ITokenService _tokenService;
 
-        public StudentController(DataContext context)
+        public StudentController(DataContext context, UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager, ITokenService tokenService)
         {
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _tokenService = tokenService;
         }
 
         // Student CRUD
         [HttpPost("new")]
-        public async Task<ActionResult> New(Student student)
+        public async Task<ActionResult<UserDto>> New(Student student)
         {
-            await _context.Students.AddAsync(student);
-            await _context.SaveChangesAsync();
-            return Ok("Student Saved");
+            RegisterDto registerDto = new RegisterDto()
+            {
+                Email = student.Email,
+                FullName = student.FullName,
+                Password = "Pa$$w0rd",
+                Username = student.UserName
+            };
+            
+            if (await UserExists(registerDto.Username)) return BadRequest("User Already Exist");
+            
+            var user = new AppUser
+            {
+                UserName = registerDto.Username.ToLower(),
+                Email = registerDto.Email,
+                FullName = registerDto.FullName
+            };
+
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
+            if (!result.Succeeded) return BadRequest(result);
+
+            var roleResult = await _userManager.AddToRoleAsync(user, "Student");
+            if (!roleResult.Succeeded) return BadRequest(result);
+
+            return new UserDto
+            {
+                Id = user.Id,
+                Username = user.UserName,
+                Token = await _tokenService.CreateToken(user)
+            };
+        }
+        
+        private async Task<bool> UserExists(string username)
+        {
+            return await _userManager.Users.AnyAsync(x => x.UserName == username.ToLower());
         }
 
         [HttpGet("")]
-        public async Task<ActionResult> Get()
+        public async Task<ActionResult<List<AppUser>>> Get()
         {
             var role = await _context.Roles.Where(role => role.Name == "Student").SingleOrDefaultAsync();
-            return Ok(_context.Users.Where(user => user.UserRoles.Any(r => r.RoleId == role.Id)));
+            return await _context.Users.Where(user => user.UserRoles.Any(r => r.RoleId == role.Id)).ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<AppUser> Get(int id)
+        public async Task<ActionResult<AppUser>> Get(int id)
         {
             return await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         [HttpDelete("delete/{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<AppUser>> Delete(int id)
         {
             var studentToDelete = await _context.Users.FindAsync(id);
             if (studentToDelete == null) return BadRequest("Student doesn't exist.");
             _context.Users.Remove(studentToDelete);
             await _context.SaveChangesAsync();
-            return Ok("Student Successfully Deleted");
+            return studentToDelete;
         }
 
         [HttpPut("update")]
-        public async Task<ActionResult<NewStudentDto>> Update(NewStudentDto newStudentDto)
+        public async Task<ActionResult<AppUser>> Update(NewStudentDto newStudentDto)
         {
             var studentToUpdate = await _context.Users.FindAsync(newStudentDto.Id);
             if (studentToUpdate == null)
@@ -64,7 +104,7 @@ namespace API.Controllers
             studentToUpdate.FullName = newStudentDto.FullName;
 
             await _context.SaveChangesAsync();
-            return Ok(studentToUpdate);
+            return studentToUpdate;
         }
 
         // Enrollment methods
@@ -90,7 +130,7 @@ namespace API.Controllers
         
         // Courses with no marks
         [HttpGet("dashboard/{studentId}")]
-        public async Task<List<Course>> Dashboard(int studentId)
+        public async Task<ActionResult<List<Course>>> Dashboard(int studentId)
         {
             List<Course> coursesList = new List<Course>();
             List<Course> enrollments =
@@ -108,45 +148,47 @@ namespace API.Controllers
         }
         
         [HttpPost("enroll")]
-        public async Task<ActionResult> Enroll(EnrollDto enrollDto)
+        public async Task<ActionResult<Enrollment>> Enroll(EnrollDto enrollDto)
         {
             if (_context.Enrollments.Any(enrollment =>
                 enrollment.CourseId == enrollDto.CourseId && enrollment.StudentId == enrollDto.StudentId)) return BadRequest("Enrollment already exists");
             
-            _context.Enrollments.Add(new Enrollment()
+            Enrollment enrollment = new Enrollment()
             {
                 StudentId = enrollDto.StudentId,
                 CourseId = enrollDto.CourseId,
                 Marks = enrollDto.Marks
-            });
+            };
+            
+            _context.Enrollments.Add(enrollment);
             await _context.SaveChangesAsync();
-            return Ok("Student successfully enrolled");
+            return enrollment;
         }
 
         [HttpGet("enrollment/{id}")]
-        public async Task<Enrollment> GetSingleEnrollment(int id)
+        public async Task<ActionResult<Enrollment>> GetSingleEnrollment(int id)
         {
             return await _context.Enrollments.FirstOrDefaultAsync(x => x.EnrollmentId == id);
         }
 
         [HttpGet("enrollments/{id}")]
-        public async Task<ActionResult> GetEnrollment(int id)
+        public async Task<ActionResult<List<Enrollment>>> GetEnrollment(int id)
         {
-            return Ok(await _context.Enrollments.Where(x => x.StudentId == id).ToListAsync());
+            return await _context.Enrollments.Where(x => x.StudentId == id).ToListAsync();
         }
 
         [HttpDelete("enrollment/delete/{id}")]
-        public async Task<ActionResult> DeleteEnrollment(int id)
+        public async Task<ActionResult<Enrollment>> DeleteEnrollment(int id)
         {
             Enrollment enrollmentToDelete = await _context.Enrollments.FindAsync(id);
             if (enrollmentToDelete == null) return NotFound("Enrollment doesn't exist");
             _context.Enrollments.Remove(enrollmentToDelete);
             await _context.SaveChangesAsync();
-            return Ok(enrollmentToDelete);
+            return enrollmentToDelete;
         }
 
         [HttpPut("enrollment/update")]
-        public async Task<ActionResult> UpdateEnrollment(List<EnrollDto> enrollDto)
+        public async Task<ActionResult<List<Enrollment>>> UpdateEnrollment(List<EnrollDto> enrollDto)
         {
             List<Enrollment> enrollments = new List<Enrollment>();
             foreach (var dto in enrollDto)
@@ -161,20 +203,33 @@ namespace API.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return Ok(enrollments);
+            return enrollments;
+        }
+        
+        [HttpPut("enrollment/singleupdate")]
+        public async Task<ActionResult<Enrollment>> UpdateSingleEnrollment(EnrollUpdateDto enrollDto)
+        {
+            Enrollment enrollmentToUpdate =
+                await _context.Enrollments.FirstOrDefaultAsync(x =>
+                    x.EnrollmentId == enrollDto.EnrollmentId);
+            
+            enrollmentToUpdate.Marks = enrollDto.Marks;
+            
+            await _context.SaveChangesAsync();
+            return enrollmentToUpdate;
         }
 
         // Questions and Replies
         [HttpGet("question/{id}")]
-        public async Task<ActionResult> Question(int id)
+        public async Task<ActionResult<List<Question>>> Question(int id)
         {
-            return Ok(await _context.Questions.Where(x => x.StudentId == id).ToListAsync());
+            return await _context.Questions.Where(x => x.StudentId == id).ToListAsync();
         }
 
         [HttpGet("replies/{id}")]
-        public async Task<ActionResult> Replies(int id)
+        public async Task<ActionResult<List<Reply>>> Replies(int id)
         {
-            return Ok(await _context.Replies.Where(x => x.StudentId == id).ToListAsync());
+            return await _context.Replies.Where(x => x.StudentId == id).ToListAsync();
         }
 
         [HttpPost("getrecommendation")]

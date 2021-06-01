@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StudentsService} from '../../_services/students.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-student-new',
@@ -10,7 +11,7 @@ import {Router} from '@angular/router';
 export class AdminStudentNewComponent implements OnInit {
   model: any = {};
 
-  constructor(private studentService: StudentsService, private router: Router) { }
+  constructor(private studentService: StudentsService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -18,8 +19,9 @@ export class AdminStudentNewComponent implements OnInit {
   createNew(): any {
     return this.studentService.createNewStudent(this.model).subscribe(
       next => {
+        this.toastr.success('Student Created');
+        this.router.navigateByUrl('/admin/students');
         console.log(next);
-        this.router.navigateByUrl('/admin/student');
       }, error => {
         console.log(error);
       }

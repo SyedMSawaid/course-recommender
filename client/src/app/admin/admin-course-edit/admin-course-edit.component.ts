@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Course} from '../../_models/Course';
 import {CoursesService} from '../../_services/courses.service';
 import {Observable} from 'rxjs';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-course-edit',
@@ -11,9 +12,16 @@ import {Observable} from 'rxjs';
 })
 export class AdminCourseEditComponent implements OnInit {
   courseId: string;
-  course: Course;
+  course: Course = {
+    courseId: '',
+    courseName: '',
+    courseDescription: '',
+    credit: 0,
+    newPrimaryKey: ''
+  };
 
-  constructor(private activatedRoute: ActivatedRoute, private courseService: CoursesService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private courseService: CoursesService,
+              private router: Router, private toastr: ToastrService) {
     this.activatedRoute.params.subscribe(params => {
       this.courseId = params.courseId;
     });
@@ -28,17 +36,15 @@ export class AdminCourseEditComponent implements OnInit {
   }
 
   update(): void {
-    console.log(this.course);
     this.course.newPrimaryKey = this.course.courseId;
     this.course.courseId = this.courseId;
-    console.log(this.course);
 
     this.courseService.updateCourse(this.course).subscribe(next => {
-      console.log(next);
+      this.router.navigateByUrl('/admin/courses');
+      this.toastr.success('Successfully updated');
     }, error => {
-      console.error(error);
+      this.toastr.error(error);
     });
-    this.router.navigateByUrl('/admin/courses');
   }
 
 }

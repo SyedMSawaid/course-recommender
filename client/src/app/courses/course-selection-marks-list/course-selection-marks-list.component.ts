@@ -5,6 +5,7 @@ import {NewEnrollment} from '../../_models/NewEnrollment';
 import {Router} from '@angular/router';
 import {CoursesService} from '../../_services/courses.service';
 import {Observable} from 'rxjs';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-course-selection-marks-list',
@@ -17,7 +18,8 @@ export class CourseSelectionMarksListComponent implements OnInit {
   enrollmentList: NewEnrollment[] = [];
   x: any;
 
-  constructor(private studentService: StudentsService, private coursesService: CoursesService, private router: Router) { }
+  constructor(private studentService: StudentsService, private coursesService: CoursesService, private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.selectedCourses = JSON.parse(localStorage.getItem('courses'));
@@ -40,11 +42,16 @@ export class CourseSelectionMarksListComponent implements OnInit {
   onSubmit(): void {
     console.log(this.enrollmentList);
     for (const enrollment of this.enrollmentList) {
-      this.studentService.createNewEnrollment(enrollment);
-      console.log('Sending Enrollment!!!');
+      this.studentService.createNewEnrollment(enrollment).subscribe(
+        next => {
+          localStorage.removeItem('courses');
+          this.toastr.success('Successfully Enrolled');
+          this.router.navigateByUrl('dashboard');
+        }, error => {
+          console.log(error);
+        }
+      );
     }
-    localStorage.removeItem('courses');
-    this.router.navigateByUrl('dashboard');
   }
 
 }

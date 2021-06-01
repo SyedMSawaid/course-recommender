@@ -19,8 +19,11 @@ export class LoginComponent implements OnInit {
   login(): any {
     this.accountService.login(this.model).subscribe(
       response => {
-        console.log(response);
-        this.router.navigateByUrl('/dashboard');
+        if (JSON.parse(localStorage.getItem('user')).username === 'admin') {
+          this.router.navigateByUrl('admin/dashboard');
+        } else {
+          this.router.navigateByUrl('/dashboard');
+        }
       }, error => {
         console.error(error);
       }

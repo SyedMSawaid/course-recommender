@@ -46,10 +46,10 @@ namespace API.Controllers
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
-            if (!result.Succeeded) return BadRequest(result.Errors);
+            if (!result.Succeeded) return BadRequest(result);
 
             var roleResult = await _userManager.AddToRoleAsync(user, "Student");
-            if (!roleResult.Succeeded) return BadRequest(result.Errors);
+            if (!roleResult.Succeeded) return BadRequest(result);
 
             return new UserDto
             {
@@ -79,7 +79,7 @@ namespace API.Controllers
         }
 
         [HttpPut("change-password")]
-        public async Task<ActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
+        public async Task<ActionResult<UserDto>> ChangePassword(ChangePasswordDto changePasswordDto)
         {
             AppUser userToChange = await _userManager.Users.SingleOrDefaultAsync(x => x.Id == changePasswordDto.UserId);
             var succeeded = await _userManager.ChangePasswordAsync(userToChange, changePasswordDto.OldPassword,
@@ -88,12 +88,12 @@ namespace API.Controllers
             if (succeeded.Succeeded)
             {
                 AppUser user = await _userManager.Users.SingleOrDefaultAsync(x => x.Id == changePasswordDto.UserId);
-                return Ok(new UserDto
+                return new UserDto
                 {
                     Id = user.Id,
                     Username = user.UserName,
                     Token = await _tokenService.CreateToken(user)
-                });
+                };
             }
 
             return Unauthorized(succeeded.Errors);
@@ -124,17 +124,17 @@ namespace API.Controllers
             };
             client.Send("from@example.com", forgetPasswordDto.Email, "Password Reset", url);
 
-            return Ok(validToken);
+            return Ok();
         }
 
         [HttpPost("ResetPassword")]
-        public async Task<ActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        public async Task<ActionResult<AppUser>> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
             AppUser user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
             var result = await _userManager.ResetPasswordAsync(user, Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(resetPasswordDto.Token)), resetPasswordDto.NewPassword);
 
             if (!result.Succeeded) return Unauthorized(result.Errors);
-                return Ok("Password successfully updated");
+                return user;
         }
     }
 }

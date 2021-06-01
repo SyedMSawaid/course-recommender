@@ -24,7 +24,7 @@ import { AdminCourseEditComponent } from './admin/admin-course-edit/admin-course
 import { AdminStudentEditComponent } from './admin/admin-student-edit/admin-student-edit.component';
 import { AdminStudentListComponent } from './admin/admin-student-list/admin-student-list.component';
 import { AdminCourseListComponent } from './admin/admin-course-list/admin-course-list.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AdminCourseNewComponent } from './admin/admin-course-new/admin-course-new.component';
 import { AdminStudentNewComponent } from './admin/admin-student-new/admin-student-new.component';
 import { EnrollmentEditComponent } from './courses/enrollment-edit/enrollment-edit.component';
@@ -38,6 +38,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import {ToastrModule} from 'ngx-toastr';
+import {JwtInterceptor} from './_interceptor/jwt.interceptor';
+import {ErrorInterceptor} from './_interceptor/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -81,8 +84,14 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
     ReactiveFormsModule,
     HttpClientModule,
     ModalModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

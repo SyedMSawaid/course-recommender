@@ -36,32 +36,28 @@ export class StudentsService {
     );
   }
 
-  updateStudent(student: Student): any {
-    return this.http.put(this.baseUrl + 'student/update', student);
+  updateStudent(student: Student): Observable<Student> {
+    return this.http.put<Student>(this.baseUrl + 'student/update', student);
   }
 
-  createNewStudent(student: Student): any {
-    return this.http.post(this.baseUrl + 'student/new', student);
+  createNewStudent(student: Student): Observable<Student> {
+    return this.http.post<Student>(this.baseUrl + 'student/new', student);
   }
 
-  deleteStudent(student: Student): any {
-    return this.http.delete(this.baseUrl + `student/delete/${student.id}`);
+  deleteStudent(student: Student): Observable<Student> {
+    return this.http.delete<Student>(this.baseUrl + `student/delete/${student.id}`);
   }
 
-  showEnrollments(): any {
+  showEnrollments(): Observable<Enrollment[]> {
     const user = JSON.parse(localStorage.getItem('user'));
-    return this.http.get(this.baseUrl + `student/enrollments/${user.id}`);
+    return this.http.get<Enrollment[]>(this.baseUrl + `student/enrollments/${user.id}`);
   }
 
-  getEnrollment(id: number): any {
-    this.http.get<Enrollment>(this.baseUrl + 'student/enrollment/' + id).subscribe(
-      next => {
-        return next;
-      }
-    );
+  getEnrollment(id: number): Observable<Enrollment> {
+    return this.http.get<Enrollment>(this.baseUrl + 'student/enrollment/' + id);
   }
 
-  dashboard(id: number): any {
+  dashboard(id: number): Observable<Course[]> {
     return this.http.get<Course[]>(this.baseUrl + `student/dashboard/${id}`).pipe(
       map(courses => {
         return courses;
@@ -69,37 +65,29 @@ export class StudentsService {
     );
   }
 
-  editEnrollment(enrollment: Enrollment): any {
-    return this.http.put(this.baseUrl + 'student/enrollment/update', enrollment);
+  editEnrollment(enrollment: Enrollment): Observable<Enrollment> {
+    return this.http.put<Enrollment>(this.baseUrl + 'student/enrollment/singleupdate', enrollment);
   }
 
-  deleteEnrollment(id: number): any {
-    return this.http.delete(this.baseUrl + `student/enrollment/delete/${id}`);
+  deleteEnrollment(id: number): Observable<Enrollment> {
+    return this.http.delete<Enrollment>(this.baseUrl + `student/enrollment/delete/${id}`);
   }
 
-  studentNotEnrolledIn(id: number): any {
-    return this.http.get<Course>(this.baseUrl + `student/list-of-courses/${id}`);
+  studentNotEnrolledIn(id: number): Observable<Course[]> {
+    return this.http.get<Course[]>(this.baseUrl + `student/list-of-courses/${id}`);
   }
 
-  createNewEnrollment(enrollment: NewEnrollment): any {
-    return this.http.post(this.baseUrl + `student/enroll`, enrollment).subscribe(
-      next => {
-        return next;
-      }
-    );
+  createNewEnrollment(enrollment: NewEnrollment): Observable<Enrollment> {
+    return this.http.post<Enrollment>(this.baseUrl + `student/enroll`, enrollment);
   }
 
-  updateEnrollment(enrollment: NewEnrollment[]): any {
-    return this.http.put(this.baseUrl + `student/enrollment/update`, enrollment).subscribe(
-      next => {
-        return next;
-      }
-    );
+  updateEnrollment(enrollment: NewEnrollment[]): Observable<Enrollment> {
+    return this.http.put<Enrollment>(this.baseUrl + `student/enrollment/update`, enrollment);
   }
 
   // Discussion Boards
-  getAllQuestions(courseId: string): any {
-    return this.http.get(this.baseUrl + `course/question/${courseId}`);
+  getAllQuestions(courseId: string): Observable<Question[]> {
+    return this.http.get<Question[]>(this.baseUrl + `course/question/${courseId}`);
   }
 
   getAllQuestionsOfStudent(): any {
@@ -107,16 +95,16 @@ export class StudentsService {
     return this.http.get(this.baseUrl + `student/question/${user.id}`);
   }
 
-  getRepliesOfQuestion(questionId: number): any {
-    return this.http.get(this.baseUrl + `course/question/replies/${questionId}`);
+  getRepliesOfQuestion(questionId: number): Observable<Reply[]> {
+    return this.http.get<Reply[]>(this.baseUrl + `course/question/replies/${questionId}`);
   }
 
-  newQuestion(question: Question): any {
-    return this.http.post(this.baseUrl + `course/question/new`, question);
+  newQuestion(question: Question): Observable<Question> {
+    return this.http.post<Question>(this.baseUrl + `course/question/new`, question);
   }
 
-  newReply(reply: Reply): any {
-    return this.http.post(this.baseUrl + `course/question/reply/new`, reply);
+  newReply(reply: Reply): Observable<Reply> {
+    return this.http.post<Reply>(this.baseUrl + `course/question/reply/new`, reply);
   }
 
   getRecommendation(dto: RecommendationDto): any {

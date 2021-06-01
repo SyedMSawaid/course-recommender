@@ -25,7 +25,7 @@ namespace API.Controllers
         
         // COURSES CRUD
         [HttpPost("new")]
-        public async Task<ActionResult> New(Course course)
+        public async Task<ActionResult<Course>> New(Course course)
         {
             var courseToAdd = await _context.Courses.FindAsync(course.CourseId);
             if (courseToAdd != null)
@@ -35,33 +35,33 @@ namespace API.Controllers
             
             await _context.Courses.AddAsync(course);
             await _context.SaveChangesAsync();
-            return Ok("Course Saved");
+            return course;
         }
 
         [HttpGet("{id}")]
-        public async Task<Course> Get(string id)
+        public async Task<ActionResult<Course>> Get(string id)
         {
             return await _context.Courses.FirstOrDefaultAsync(course => course.CourseId == id);
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Course>> Get()
+        public async Task<ActionResult<IEnumerable<Course>>> Get()
         {
             return await _context.Courses.ToListAsync();
         }
 
         [HttpDelete("delete/{id}")]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult<Course>> Delete(string id)
         {
             var courseToDelete = await _context.Courses.FindAsync(id);
             if (courseToDelete == null) return BadRequest("Course doesn't exist.");
             _context.Courses.Remove(courseToDelete);
             await _context.SaveChangesAsync();
-            return Ok("Course Successfully Deleted");
+            return courseToDelete;
         }
 
         [HttpPut("update")]
-        public async Task<ActionResult> Update(CourseUpdateDto courseUpdateDto)
+        public async Task<ActionResult<Course>> Update(CourseUpdateDto courseUpdateDto)
         {
             var courseToUpdate = await _context.Courses.FindAsync(courseUpdateDto.CourseId);
             if (courseToUpdate == null) return BadRequest("Course doesn't exist");
@@ -80,17 +80,13 @@ namespace API.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return Ok("Course updated");
+            return courseToUpdate;
         }
         
         // DISCUSSION BOARD
         [HttpPost("question/new")]
-        public async Task<ActionResult> NewQuestion(PostQuestionDto postQuestionDto)
+        public async Task<ActionResult<Question>> NewQuestion(PostQuestionDto postQuestionDto)
         {
-            if (await _context.Courses.FirstOrDefaultAsync(x => x.CourseId == postQuestionDto.CourseId) == null)
-                return NotFound("Course Doesn't Exist");
-            if (await _context.Users.FirstOrDefaultAsync(x => x.Id == postQuestionDto.StudentId) == null)
-                return NotFound("Student Doesn't Exist");
             Question newQuestion = new Question()
             {
                 Query = postQuestionDto.Query,
@@ -100,35 +96,35 @@ namespace API.Controllers
             _context.Questions.Add(newQuestion);
 
             await _context.SaveChangesAsync();
-            return Ok(newQuestion);
+            return newQuestion;
         }
 
         [HttpGet("question/{id}")]
-        public async Task<ActionResult> GetQuestions(string id)
+        public async Task<ActionResult<List<Question>>> GetQuestions(string id)
         {
-            return Ok(await _context.Questions.Where(question => question.CourseId == id).ToListAsync());
+            return await _context.Questions.Where(question => question.CourseId == id).ToListAsync();
         }
 
         [HttpPut("question/update")]
-        public async Task<ActionResult> UpdateQuestion(UpdateQuestionDto updateQuestionDto)
+        public async Task<ActionResult<Question>> UpdateQuestion(UpdateQuestionDto updateQuestionDto)
         {
             Question questionToUpdate = await _context.Questions.FindAsync(updateQuestionDto.QuestionId);
             questionToUpdate.Query = updateQuestionDto.Query;
             await _context.SaveChangesAsync();
-            return Ok(questionToUpdate);
+            return questionToUpdate;
         }
 
         [HttpDelete("question/delete/{id}")]
-        public async Task<ActionResult> DeleteQuestion(int id)
+        public async Task<ActionResult<Question>> DeleteQuestion(int id)
         {
             Question questionToDelete = await _context.Questions.FindAsync(id);
             _context.Questions.Remove(questionToDelete);
             await _context.SaveChangesAsync();
-            return Ok(questionToDelete);
+            return questionToDelete;
         }
 
         [HttpPost("question/reply/new")]
-        public async Task<ActionResult> NewReply(NewReplyDto newReplyDto)
+        public async Task<ActionResult<Reply>> NewReply(NewReplyDto newReplyDto)
         {
             Reply newReply = new Reply()
             {
@@ -140,41 +136,41 @@ namespace API.Controllers
             _context.Replies.Add(newReply);
             await _context.SaveChangesAsync();
 
-            return Ok(newReply);
+            return newReply;
         }
 
         [HttpGet("question/replies/{id}")]
-        public async Task<ActionResult> GetReplies(int id)
+        public async Task<ActionResult<List<Reply>>> GetReplies(int id)
         {
-            return Ok(await _context.Replies.Where(x => x.QuestionId == id).ToListAsync());
+            return await _context.Replies.Where(x => x.QuestionId == id).ToListAsync();
         }
 
         [HttpDelete("question/reply/delete/{id}")]
-        public async Task<ActionResult> DeleteReply(int id)
+        public async Task<ActionResult<Reply>> DeleteReply(int id)
         {
             Reply replyToDelete = await _context.Replies.FindAsync(id);
             _context.Replies.Remove(replyToDelete);
             await _context.SaveChangesAsync();
-            return Ok(replyToDelete);
+            return replyToDelete;
         }
 
         [HttpPut("question/reply/update")]
-        public async Task<ActionResult> UpdateReply(UpdateReplyDto updateReplyDto)
+        public async Task<ActionResult<Reply>> UpdateReply(UpdateReplyDto updateReplyDto)
         {
             Reply replyToUpdate = await _context.Replies.FindAsync(updateReplyDto.ReplyId);
             replyToUpdate.Answer = updateReplyDto.Answer;
             await _context.SaveChangesAsync();
-            return Ok(replyToUpdate);
+            return replyToUpdate;
         }
         
         // Give Feedback
         [HttpPost("givefeedback")]
-        public async Task<ActionResult> GiveFeedback(GiveFeedbackDto giveFeedbackDto)
+        public async Task<ActionResult<Enrollment>> GiveFeedback(GiveFeedbackDto giveFeedbackDto)
         {
             Enrollment enrollmentToEdit = await _context.Enrollments.FindAsync(giveFeedbackDto.EnrollmentId);
             enrollmentToEdit.Marks = giveFeedbackDto.Marks;
             await _context.SaveChangesAsync();
-            return Ok(enrollmentToEdit);
+            return enrollmentToEdit;
         }
     }
 }
