@@ -10,7 +10,7 @@ import {map} from 'rxjs/operators';
 })
 export class AccountService {
   baseUrl = environment.baseApi;
-  private currentUserSource = new ReplaySubject<User>(1);
+  public currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient) {

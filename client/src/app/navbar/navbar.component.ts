@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AccountService} from '../_services/account.service';
+import {Observable, Subject} from 'rxjs';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -13,11 +14,11 @@ export class NavbarComponent implements OnInit {
     this.user = this.accountService.currentUser$;
   }
 
-
   ngOnInit(): void {
     this.user.subscribe(
       next => {
         this.loginModel = next;
+        console.log(next);
       }
     );
   }

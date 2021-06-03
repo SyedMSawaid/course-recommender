@@ -4,7 +4,7 @@ import {NewEnrollment} from '../../_models/NewEnrollment';
 import {StudentsService} from '../../_services/students.service';
 import {Router} from '@angular/router';
 import {RecommendationDto} from '../../_models/RecommendationDto';
-import {ToastrService} from 'ngx-toastr';
+import {Toast, ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-recommended',
@@ -17,10 +17,14 @@ export class RecommendedComponent implements OnInit {singleModel = '1';
   recommendationList: RecommendationDto;
   x: any;
 
-  constructor(private studentService: StudentsService, private router: Router) { }
+  constructor(private studentService: StudentsService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.selectedCourses = JSON.parse(localStorage.getItem('courses'));
+    if (this.selectedCourses.length === 0) {
+      this.toastr.error('Select courses');
+      this.router.navigateByUrl('/select-courses');
+    }
     this.studentId = JSON.parse(localStorage.getItem('user')).id;
     this.recommendationList = {
       studentId: this.studentId,

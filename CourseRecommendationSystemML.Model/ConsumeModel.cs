@@ -10,17 +10,22 @@ namespace CourseRecommendationSystemML.Model
 {
     public class ConsumeModel
     {
-        private static Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictionEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(CreatePredictionEngine);
+        private Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictionEngine;
 
-        public static string MLNetModelPath = Path.GetFullPath("MLModel.zip");
+        public string MLNetModelPath = Path.GetFullPath("MLModel.zip");
 
-        public static ModelOutput Predict(ModelInput input)
+        public ConsumeModel()
+        {
+            PredictionEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(CreatePredictionEngine);
+        }
+
+        public ModelOutput Predict(ModelInput input)
         {
             ModelOutput result = PredictionEngine.Value.Predict(input);
             return result;
         }
 
-        public static PredictionEngine<ModelInput, ModelOutput> CreatePredictionEngine()
+        public PredictionEngine<ModelInput, ModelOutput> CreatePredictionEngine()
         {
             MLContext mlContext = new MLContext();
 

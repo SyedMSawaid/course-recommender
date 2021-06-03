@@ -8,12 +8,13 @@ namespace API.Entity
 {
     public class Course
     {
-        [Key]
+        [Key, Required, MinLength(6)]
         public string CourseId { get; set; }
         [Required, MinLength(8)]
         public string CourseName { get; set; }
         [Required, MinLength(8)]
         public string CourseDescription { get; set; }
+        [Required]
         public int Credit { get; set; }
 
         public ICollection<Enrollment> Enrollments { get; set; }

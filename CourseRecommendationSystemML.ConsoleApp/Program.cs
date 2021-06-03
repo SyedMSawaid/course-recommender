@@ -8,8 +8,8 @@ namespace CourseRecommendationSystemML.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Recommendations r = new Recommendations();
-            r.PrintAllRecommendations();
+            ModelBuilder.CreateModel();
+            Console.WriteLine("Model Created");
         }
     }
 

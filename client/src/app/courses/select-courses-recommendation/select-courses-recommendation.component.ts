@@ -4,6 +4,7 @@ import {Course} from '../../_models/Course';
 import {CoursesService} from '../../_services/courses.service';
 import {StudentsService} from '../../_services/students.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-select-courses-recommendation',
@@ -15,8 +16,15 @@ export class SelectCoursesRecommendationComponent implements OnInit {
   courses$: Observable<Course[]>;
   selectedCourses: Course[] = [];
 
-  constructor(private courseService: CoursesService, private studentService: StudentsService, private router: Router) {
+  constructor(private courseService: CoursesService, private studentService: StudentsService, private router: Router,
+              private toastr: ToastrService) {
     this.studentId = JSON.parse(localStorage.getItem('user')).id;
+    this.studentService.showEnrollments().subscribe(next => {
+      if (next.length === 0) {
+        this.toastr.error('Enroll in courses first');
+        this.router.navigateByUrl('/dashboard');
+      }
+    });
   }
 
   ngOnInit(): void {

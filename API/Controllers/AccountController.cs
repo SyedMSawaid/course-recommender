@@ -37,6 +37,8 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             if (await UserExists(registerDto.Username)) return BadRequest("User Already Exist");
+            if (await _userManager.Users.FirstOrDefaultAsync(x => x.Email == registerDto.Email) != null)
+                return BadRequest("Use new Email");
 
             var user = new AppUser
             {

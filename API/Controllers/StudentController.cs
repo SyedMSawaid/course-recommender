@@ -32,7 +32,7 @@ namespace API.Controllers
 
         // Student CRUD
         [HttpPost("new")]
-        public async Task<ActionResult<UserDto>> New(Student student)
+        public async Task<ActionResult<UserDto>> New(AppUser student)
         {
             RegisterDto registerDto = new RegisterDto()
             {
@@ -43,6 +43,8 @@ namespace API.Controllers
             };
             
             if (await UserExists(registerDto.Username)) return BadRequest("User Already Exist");
+            if (await _userManager.Users.FirstOrDefaultAsync(x => x.Email == registerDto.Email) != null)
+                return BadRequest("Use new Email");
             
             var user = new AppUser
             {
@@ -235,6 +237,10 @@ namespace API.Controllers
         [HttpPost("getrecommendation")]
         public async Task<ActionResult<List<CourseMarksDto>>> GetRecommendation(CoursesListDto coursesListDto)
         {
+            if (await _context.Enrollments.Where(x => x.StudentId == coursesListDto.StudentId).ToListAsync() == null)
+                return BadRequest("Please first enroll in courses to get recommendation");
+            new MLModelBuilder().CreateModel();
+            ConsumeModel model = new ConsumeModel();
             if ((await _context.Users.FirstOrDefaultAsync(x => x.Id == coursesListDto.StudentId)) == null)
                 return NotFound("Student Doesn't Exist");
             
@@ -248,9 +254,19 @@ namespace API.Controllers
                     StudentId = coursesListDto.StudentId,
                     CourseId = course
                 };
+
+                float score = 0;
+                if (model.Predict(modelInput).Score > 100) {
+                    score = 100;
+                } else if (model.Predict(modelInput).Score < 0) {
+                    score = 0;
+                } else {
+                    score = model.Predict(modelInput).Score;
+                }
+
                 CoursesList.Add(new CourseMarksDto(){
                     CourseId = course,
-                    Marks = ConsumeModel.Predict(modelInput).Score
+                    Marks = score
                 });
             }
 

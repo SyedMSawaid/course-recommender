@@ -41,6 +41,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import {ToastrModule} from 'ngx-toastr';
 import {JwtInterceptor} from './_interceptor/jwt.interceptor';
 import {ErrorInterceptor} from './_interceptor/error.interceptor';
+import {AuthGuard} from './_guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import {ErrorInterceptor} from './_interceptor/error.interceptor';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
